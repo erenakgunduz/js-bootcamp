@@ -1,5 +1,5 @@
-let gradeCalc = (studentScore, totalScore) => {
-  let percentGrade = studentScore / totalScore;
+const gradeCalc = (studentScore, totalScore) => {
+  const percentGrade = studentScore / totalScore;
   let letterGrade;
 
   // Determining the possible letter grades
@@ -30,5 +30,5 @@ let gradeCalc = (studentScore, totalScore) => {
 };
 
 // Calls the function with our provided values
-let exampleScore = gradeCalc(15, 20);
+const exampleScore = gradeCalc(15, 20);
 console.log(exampleScore);

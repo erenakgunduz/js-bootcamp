@@ -1,7 +1,7 @@
 // Undefined for variable
 let theName;
 
-theName = "Iskender";
+theName = "Eren";
 
 if (theName === undefined) {
   console.log("Please provide a name");
@@ -20,7 +20,7 @@ console.log(result);
 
 let age = 27;
 
-// age = undefined; -- use null as explicitly assigned value
+// age = undefined; -- use null to explicitly assign lack of value
 age = null;
 
 console.log(age);
