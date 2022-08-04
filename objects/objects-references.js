@@ -5,11 +5,11 @@ let myAccount = {
 };
 
 let addIncome = (account, amount) => {
-  account.income = account.income + amount;
+  account.income += amount;
 };
 
 let addExpense = (account, amount) => {
-  account.expenses = account.expenses + amount;
+  account.expenses += amount;
 };
 
 let resetAccount = (account) => {

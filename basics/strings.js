@@ -1,7 +1,7 @@
 // Intro
 
 let firstName = "Eren";
-let lastName = "Akgunduz";
+let lastName = "Akgündüz";
 let fullName = firstName + " " + lastName;
 
 console.log(fullName);
