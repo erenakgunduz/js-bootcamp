@@ -11,18 +11,11 @@
 //   console.log(p.textContent);
 // });
 
-let notes = [];
+const notes = getSavedNotes();
 
 const filters = {
   searchText: "",
 };
-
-// Check for existing saved data
-const notesJSON = localStorage.getItem("notes");
-
-if (notesJSON !== null) {
-  notes = JSON.parse(notesJSON);
-}
 
 // const user = {
 //   name: "Eren",
@@ -41,26 +34,6 @@ if (notesJSON !== null) {
 // localStorage.removeItem("location");
 // localStorage.clear();
 
-const renderNotes = (notes, filters) => {
-  const filteredNotes = notes.filter((note) => {
-    return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
-  });
-
-  document.querySelector(".notes .note-list").innerHTML = "";
-
-  filteredNotes.forEach((note) => {
-    const noteEl = document.createElement("li");
-
-    if (note.title.length > 0) {
-      noteEl.textContent = note.title;
-    } else {
-      noteEl.textContent = "Unnamed note";
-    }
-
-    document.querySelector(".notes .note-list").appendChild(noteEl);
-  });
-};
-
 renderNotes(notes, filters);
 
 // const newParagraph = document.createElement("p");
@@ -69,7 +42,7 @@ renderNotes(notes, filters);
 
 document.querySelector("#create-note").addEventListener("click", (e) => {
   notes.push({ title: "", body: "" });
-  localStorage.setItem("notes", JSON.stringify(notes));
+  saveNotes(notes);
   renderNotes(notes, filters);
 });
 
