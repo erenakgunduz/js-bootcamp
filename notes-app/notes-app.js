@@ -11,24 +11,35 @@
 //   console.log(p.textContent);
 // });
 
-const notes = [
-  {
-    title: "My next trip",
-    body: "Somewhere on a certain continent",
-  },
-  {
-    title: "Habits to work on",
-    body: "Time management, first and foremost",
-  },
-  {
-    title: "Room modifications",
-    body: "New larger bed",
-  },
-];
+let notes = [];
 
 const filters = {
   searchText: "",
 };
+
+// Check for existing saved data
+const notesJSON = localStorage.getItem("notes");
+
+if (notesJSON !== null) {
+  notes = JSON.parse(notesJSON);
+}
+
+// const user = {
+//   name: "Eren",
+//   age: 20,
+// };
+
+// const userJSON = JSON.stringify(user);
+// console.log(userJSON);
+// localStorage.setItem("user", userJSON);
+// const userJSON = localStorage.getItem("user");
+// const user = JSON.parse(userJSON);
+// console.log(`${user.name} is ${user.age}`);
+
+// localStorage.setItem("location", "Broward");
+// console.log(localStorage.getItem("location"));
+// localStorage.removeItem("location");
+// localStorage.clear();
 
 const renderNotes = (notes, filters) => {
   const filteredNotes = notes.filter((note) => {
@@ -39,7 +50,13 @@ const renderNotes = (notes, filters) => {
 
   filteredNotes.forEach((note) => {
     const noteEl = document.createElement("li");
-    noteEl.textContent = note.title;
+
+    if (note.title.length > 0) {
+      noteEl.textContent = note.title;
+    } else {
+      noteEl.textContent = "Unnamed note";
+    }
+
     document.querySelector(".notes .note-list").appendChild(noteEl);
   });
 };
@@ -51,7 +68,9 @@ renderNotes(notes, filters);
 // document.querySelector("body").appendChild(newParagraph);
 
 document.querySelector("#create-note").addEventListener("click", (e) => {
-  e.target.textContent = "The button was clicked";
+  notes.push({ title: "", body: "" });
+  localStorage.setItem("notes", JSON.stringify(notes));
+  renderNotes(notes, filters);
 });
 
 document.querySelector("#search-text").addEventListener("input", (e) => {

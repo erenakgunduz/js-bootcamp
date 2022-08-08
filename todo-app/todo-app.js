@@ -7,18 +7,18 @@
 //   }
 // });
 
-const todos = [
-  { text: "Çöpü çıkar", completed: true },
-  { text: "Make breakfast", completed: true },
-  { text: "Buy item", completed: false },
-  { text: "Update Swift", completed: false },
-  { text: "Exit house", completed: true },
-];
+let todos = [];
 
 const filters = {
   searchText: "",
   hideCompleted: document.getElementById("hide-completed"),
 };
+
+// Check for existing saved data
+const todosJSON = localStorage.getItem("todos");
+if (todosJSON !== null) {
+  todos = JSON.parse(todosJSON);
+}
 
 // Filters and renders list
 const renderTodos = (todos, filters) => {
@@ -82,7 +82,15 @@ document.querySelector("#search-text").addEventListener("input", (e) => {
 // Listens for form submission and appends new todo to list
 document.querySelector("#new-todo").addEventListener("submit", (e) => {
   e.preventDefault();
-  todos.push({ text: e.target.elements.newTodoText.value, completed: false });
+
+  if (e.target.elements.newTodoText.value.trim().length > 0) {
+    todos.push({
+      text: e.target.elements.newTodoText.value.trim(),
+      completed: false,
+    });
+  }
+  localStorage.setItem("todos", JSON.stringify(todos));
+
   renderTodos(todos, filters);
   return (e.target.elements.newTodoText.value = "");
 });
