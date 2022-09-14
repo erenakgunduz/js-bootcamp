@@ -35,6 +35,18 @@ const removeTodo = (id) => {
   }
 };
 
+// Toggle checkbox for a todo
+const toggleTodo = (id, e) => {
+  const todoToggle = todos.find((todo) => {
+    return todo.id === id;
+  });
+
+  if (todoToggle !== undefined) {
+    todoToggle.completed = !todoToggle.completed;
+  }
+  e.target.checked = todoToggle.completed;
+};
+
 // Display summary
 const getSummary = (todos) => {
   const pendingTodos = document.createElement("h2");
@@ -55,13 +67,21 @@ const generateTodoDOM = (render) => {
     const toDoListText = document.createElement("span");
     const rmButton = document.createElement("button");
 
-    // Specifying and appending the relevant elements
+    // Checkbox functionality
     checkBox.setAttribute("type", "checkbox");
     toDoList.appendChild(checkBox);
+    checkBox.checked = todo.completed;
+    checkBox.addEventListener("change", (e) => {
+      toggleTodo(todo.id, e);
+      saveTodos(todos);
+      renderTodos(todos, filters);
+    });
 
+    // Todo text to be rendered
     toDoListText.textContent = todo.text;
     toDoList.appendChild(toDoListText);
 
+    // Remove button functionality
     rmButton.textContent = "x";
     toDoList.appendChild(rmButton);
     rmButton.addEventListener("click", () => {
