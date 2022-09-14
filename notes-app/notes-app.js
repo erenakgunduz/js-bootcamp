@@ -41,7 +41,7 @@ renderNotes(notes, filters);
 // document.querySelector("body").appendChild(newParagraph);
 
 document.querySelector("#create-note").addEventListener("click", (e) => {
-  notes.push({ title: "", body: "" });
+  notes.push({ id: crypto.randomUUID(), title: "", body: "" });
   saveNotes(notes);
   renderNotes(notes, filters);
 });

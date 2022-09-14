@@ -17,12 +17,21 @@ const saveNotes = (notes) => {
 // Generate the DOM structure for a note
 const generateNoteDOM = (note) => {
   const noteEl = document.createElement("li");
+  const textEl = document.createElement("span");
+  const button = document.createElement("button");
 
+  // Set up remove note button
+  button.textContent = "x";
+  noteEl.appendChild(button);
+
+  // Set up note title text
   if (note.title.length > 0) {
-    noteEl.textContent = note.title;
+    textEl.textContent = note.title;
   } else {
-    noteEl.textContent = "Unnamed note";
+    textEl.textContent = "Unnamed note";
   }
+  noteEl.appendChild(textEl);
+
   return noteEl;
 };
 

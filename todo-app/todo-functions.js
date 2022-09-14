@@ -12,6 +12,7 @@ const getSavedTodos = () => {
 const pushTodos = (todos, e) => {
   if (e.target.elements.newTodoText.value.trim().length > 0) {
     todos.push({
+      id: crypto.randomUUID(),
       text: e.target.elements.newTodoText.value.trim(),
       completed: false,
     });
@@ -39,7 +40,20 @@ const generateTodoDOM = (render) => {
   document.querySelector(".todos .todo-list").innerHTML = "";
   render.forEach((todo) => {
     const toDoList = document.createElement("li");
-    toDoList.textContent = todo.text;
+    const checkBox = document.createElement("input");
+    const toDoListText = document.createElement("span");
+    const rmButton = document.createElement("button");
+
+    // Specifying and appending the relevant elements
+    checkBox.setAttribute("type", "checkbox");
+    toDoList.appendChild(checkBox);
+
+    toDoListText.textContent = todo.text;
+    toDoList.appendChild(toDoListText);
+
+    rmButton.textContent = "x";
+    toDoList.appendChild(rmButton);
+
     document.querySelector(".todos .todo-list").appendChild(toDoList);
   });
 };
