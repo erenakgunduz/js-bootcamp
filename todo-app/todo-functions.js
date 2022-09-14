@@ -24,6 +24,17 @@ const saveTodos = (todos) => {
   localStorage.setItem("todos", JSON.stringify(todos));
 };
 
+// Remove a todo from the list
+const removeTodo = (id) => {
+  const todoIndex = todos.findIndex((todo) => {
+    return todo.id === id;
+  });
+
+  if (todoIndex > -1) {
+    todos.splice(todoIndex, 1);
+  }
+};
+
 // Display summary
 const getSummary = (todos) => {
   const pendingTodos = document.createElement("h2");
@@ -53,6 +64,11 @@ const generateTodoDOM = (render) => {
 
     rmButton.textContent = "x";
     toDoList.appendChild(rmButton);
+    rmButton.addEventListener("click", () => {
+      removeTodo(todo.id);
+      saveTodos(todos);
+      renderTodos(todos, filters);
+    });
 
     document.querySelector(".todos .todo-list").appendChild(toDoList);
   });
