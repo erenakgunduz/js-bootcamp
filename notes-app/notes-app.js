@@ -11,7 +11,7 @@
 //   console.log(p.textContent);
 // });
 
-const notes = getSavedNotes();
+let notes = getSavedNotes();
 
 const filters = {
   searchText: "",
@@ -40,10 +40,10 @@ renderNotes(notes, filters);
 // newParagraph.textContent = "This is a new element from JavaScript";
 // document.querySelector("body").appendChild(newParagraph);
 
-document.querySelector("#create-note").addEventListener("click", (e) => {
+document.querySelector("#create-note").addEventListener("click", () => {
   notes.push({ id: crypto.randomUUID(), title: "", body: "" });
   saveNotes(notes);
-  renderNotes(notes, filters);
+  location.assign(`/notes-app/edit.html#${notes.at(-1).id}`);
 });
 
 document.querySelector("#search-text").addEventListener("input", (e) => {
@@ -53,4 +53,9 @@ document.querySelector("#search-text").addEventListener("input", (e) => {
 
 document.querySelector("#filter-by").addEventListener("change", (e) => {
   console.log(e.target.value);
+});
+
+window.addEventListener("storage", (e) => {
+  notes = JSON.parse(e.newValue);
+  renderNotes(notes, filters);
 });
