@@ -58,7 +58,7 @@ document.querySelector('#search-text').addEventListener('input', (e) => {
   renderNotes(notes, filters);
 });
 
-document.querySelector('#filter-by').addEventListener('change', (e) => {
+document.querySelector('#sort-by').addEventListener('change', (e) => {
   filters.sortBy = e.target.value;
   renderNotes(notes, filters);
 });
