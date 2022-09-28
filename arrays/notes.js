@@ -1,15 +1,15 @@
 const notes = [
   {
-    title: "My next trip",
-    body: "Somewhere on a certain continent",
+    title: 'My next trip',
+    body: 'Somewhere on a certain continent',
   },
   {
-    title: "Habits to work on",
-    body: "Time management, first and foremost",
+    title: 'Habits to work on',
+    body: 'Time management, first and foremost',
   },
   {
-    title: "Room modifications",
-    body: "New larger bed",
+    title: 'Room modifications',
+    body: 'New larger bed',
   },
 ];
 

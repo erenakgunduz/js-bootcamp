@@ -5,9 +5,9 @@
 // <= - less than or equal to operator
 // >= - greater than or equal to operator
 
-let temp = 105;
-let isFreezing = temp <= 32;
-let dashes = "------";
+const temp = 105;
+const isFreezing = temp <= 32;
+const dashes = '------';
 
 if (isFreezing) {
   console.log("It's freezing outside!");
@@ -21,12 +21,12 @@ if (temp >= 100) {
 
 // Challenge area
 
-let age = 19;
+const age = 19;
 
 if (age <= 8) {
-  console.log("You will get a child discount.");
+  console.log('You will get a child discount.');
 } else if (age >= 65) {
-  console.log("You will get a senior discount.");
+  console.log('You will get a senior discount.');
 } else {
   console.log("You won't get a discount.");
 }

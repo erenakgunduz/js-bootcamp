@@ -8,7 +8,7 @@
 
 // Using object to have it all in one function
 const tempConverter = (fahrenheit) => {
-  let celsius = (Number(fahrenheit) - 32) * (5 / 9);
+  const celsius = (Number(fahrenheit) - 32) * (5 / 9);
 
   return {
     celsius: celsius,
@@ -16,19 +16,17 @@ const tempConverter = (fahrenheit) => {
   };
 };
 
-const readline = require("readline").createInterface({
+const readline = require('readline').createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
-readline.question("\nTemperature in °F: ", (myTemp) => {
+readline.question('\nTemperature in °F: ', (myTemp) => {
   // Only need to call the function once, then we can use the returned properties
-  let temp = tempConverter(myTemp);
+  const temp = tempConverter(myTemp);
 
-  console.log("\nTemperature in °C: " + parseFloat(temp.celsius.toFixed(2)));
-  console.log(
-    `\nTemperature in Kelvin: ${parseFloat(temp.kelvin.toFixed(2))} K\n`
-  );
+  console.log(`\nTemperature in °C: ${parseFloat(temp.celsius.toFixed(2))}`);
+  console.log(`\nTemperature in Kelvin: ${parseFloat(temp.kelvin.toFixed(2))} K\n`);
 
   readline.close();
 });

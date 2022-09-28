@@ -12,7 +12,7 @@ if (true) {
   if (true) {
     // Don't allow a local value to "leak" as a global definition
     // By using let here we bind it to this particular scope
-    let myName = "Uvuvwevwevwe";
+    const myName = 'Uvuvwevwevwe';
     console.log(myName);
   }
 }

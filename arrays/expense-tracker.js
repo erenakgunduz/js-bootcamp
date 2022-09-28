@@ -1,5 +1,5 @@
 const account = {
-  owner: "Andrew",
+  owner: 'Andrew',
   expenses: [],
   incomes: [],
   addExpense: function (description, amount) {
@@ -29,9 +29,9 @@ const account = {
   },
 };
 
-account.addExpense("Rent", 950);
-account.addExpense("Coffee", 2);
-account.addIncome("Job", 1000);
+account.addExpense('Rent', 950);
+account.addExpense('Coffee', 2);
+account.addIncome('Job', 1000);
 
 console.log(account.expenses);
 console.log(account.getAccountSummary());

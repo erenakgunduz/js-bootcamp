@@ -1,10 +1,10 @@
 // Undefined for variable
 let theName;
 
-theName = "Eren";
+theName = 'Eren';
 
 if (theName === undefined) {
-  console.log("Please provide a name");
+  console.log('Please provide a name');
 } else {
   console.log(theName);
 }

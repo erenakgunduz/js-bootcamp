@@ -1,21 +1,21 @@
 let myBook = {
-  title: "1984",
-  author: "George Orwell",
+  title: '1984',
+  author: 'George Orwell',
   pageCount: 326,
 };
 
 console.log(`${myBook.title} by ${myBook.author}`);
 
-myBook.title = "Animal Farm";
+myBook.title = 'Animal Farm';
 
 console.log(`${myBook.title} by ${myBook.author}`);
 
 // Challenge area
 
 let me = {
-  name: "Eren",
+  name: 'Eren',
   age: 19,
-  location: "İzmir",
+  location: 'İzmir',
 };
 
 console.log(`\n${me.name} is ${me.age} and is from ${me.location}`);

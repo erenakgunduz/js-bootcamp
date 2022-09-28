@@ -1,9 +1,9 @@
 const toDoList = [
-  { text: "Çöpü çıkar", completed: true },
-  { text: "Make breakfast", completed: true },
-  { text: "Buy item", completed: false },
-  { text: "Update Swift", completed: false },
-  { text: "Exit house", completed: true },
+  { text: 'Çöpü çıkar', completed: true },
+  { text: 'Make breakfast', completed: true },
+  { text: 'Buy item', completed: false },
+  { text: 'Update Swift', completed: false },
+  { text: 'Exit house', completed: true },
 ];
 
 const deleteTodo = (list, title) => {

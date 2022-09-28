@@ -1,7 +1,7 @@
 // Function - input (argument), code, output (return value)
 
 let greetUser = function () {
-  console.log("Welcome user!");
+  console.log('Welcome user!');
 };
 
 greetUser();
@@ -33,6 +33,6 @@ let ConvertFtoC = (fahrenheit) => {
 let tempOne = ConvertFtoC(32);
 let tempTwo = ConvertFtoC(68);
 
-console.log("------");
+console.log('------');
 console.log(tempOne);
 console.log(tempTwo);

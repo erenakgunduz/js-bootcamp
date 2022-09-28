@@ -1,9 +1,9 @@
-const getItems = Array.from(document.querySelectorAll("ul > li"));
+const getItems = Array.from(document.querySelectorAll('ul > li'));
 const itemsText = getItems.map((x) => x.textContent);
 
 const findText = (list) => {
   return list.filter((results) => {
-    return results.toLowerCase().includes("the");
+    return results.toLowerCase().includes('the');
   });
 };
 

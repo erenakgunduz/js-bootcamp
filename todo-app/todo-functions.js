@@ -1,11 +1,10 @@
 // Fetch existing todos from localStorage
 const getSavedTodos = () => {
-  const todosJSON = localStorage.getItem("todos");
+  const todosJSON = localStorage.getItem('todos');
   if (todosJSON !== null) {
     return JSON.parse(todosJSON);
-  } else {
-    return [];
   }
+  return [];
 };
 
 // Append a new incomplete todo item
@@ -21,7 +20,7 @@ const pushTodos = (todos, e) => {
 
 // Save todos to localStorage
 const saveTodos = (todos) => {
-  localStorage.setItem("todos", JSON.stringify(todos));
+  localStorage.setItem('todos', JSON.stringify(todos));
 };
 
 // Remove a todo from the list
@@ -49,29 +48,29 @@ const toggleTodo = (id, e) => {
 
 // Display summary
 const getSummary = (todos) => {
-  const pendingTodos = document.createElement("h2");
+  const pendingTodos = document.createElement('h2');
   if (todos.length === 1) {
-    pendingTodos.textContent = "You have one todo left";
+    pendingTodos.textContent = 'You have one todo left';
   } else {
     pendingTodos.textContent = `You have ${todos.length} todos left`;
   }
-  document.querySelector("header").appendChild(pendingTodos);
+  document.querySelector('header').appendChild(pendingTodos);
 };
 
 // Generate DOM render
 const generateTodoDOM = (render) => {
-  document.querySelector(".todos .todo-list").innerHTML = "";
+  document.querySelector('.todos .todo-list').innerHTML = '';
   render.forEach((todo) => {
-    const toDoList = document.createElement("li");
-    const checkBox = document.createElement("input");
-    const toDoListText = document.createElement("span");
-    const rmButton = document.createElement("button");
+    const toDoList = document.createElement('li');
+    const checkBox = document.createElement('input');
+    const toDoListText = document.createElement('span');
+    const rmButton = document.createElement('button');
 
     // Checkbox functionality
-    checkBox.setAttribute("type", "checkbox");
+    checkBox.setAttribute('type', 'checkbox');
     toDoList.appendChild(checkBox);
     checkBox.checked = todo.completed;
-    checkBox.addEventListener("change", (e) => {
+    checkBox.addEventListener('change', (e) => {
       toggleTodo(todo.id, e);
       saveTodos(todos);
       renderTodos(todos, filters);
@@ -82,20 +81,20 @@ const generateTodoDOM = (render) => {
     toDoList.appendChild(toDoListText);
 
     // Remove button functionality
-    rmButton.textContent = "x";
+    rmButton.textContent = 'x';
     toDoList.appendChild(rmButton);
-    rmButton.addEventListener("click", () => {
+    rmButton.addEventListener('click', () => {
       removeTodo(todo.id);
       saveTodos(todos);
       renderTodos(todos, filters);
     });
 
-    document.querySelector(".todos .todo-list").appendChild(toDoList);
+    document.querySelector('.todos .todo-list').appendChild(toDoList);
   });
 };
 
 // Render application todos based on filters
-const renderTodos = (todos, filters) => {
+function renderTodos(todos, filters) {
   const filteredTodos = (list) => {
     return list.filter((item) => {
       return item.text.toLowerCase().includes(filters.searchText.toLowerCase());
@@ -106,7 +105,7 @@ const renderTodos = (todos, filters) => {
     return !todo.completed;
   });
 
-  document.querySelector("header").innerHTML = "<h1>Todo App</h1>";
+  document.querySelector('header').innerHTML = '<h1>Todo App</h1>';
   getSummary(filteredTodos(getPendingTodos));
 
   // Render based on current state of checkbox at time of function call
@@ -118,11 +117,10 @@ const renderTodos = (todos, filters) => {
   }
 
   // Also need event listener here to respond to every change to checkbox state
-  document.querySelector("#hide-completed").addEventListener("change", (e) => {
+  document.querySelector('#hide-completed').addEventListener('change', (e) => {
     if (e.target.checked) {
       return generateTodoDOM(filteredTodos(getPendingTodos));
-    } else {
-      return generateTodoDOM(filteredTodos(todos));
     }
+    return generateTodoDOM(filteredTodos(todos));
   });
-};
+}

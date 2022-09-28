@@ -9,20 +9,20 @@
 // ----Local scope (varFour)
 // --Local scope (varThree)
 
-let varOne = "varOne";
+const varOne = 'varOne';
 
 if (true) {
   console.log(varOne);
-  let varTwo = "varTwo";
+  const varTwo = 'varTwo';
   console.log(varTwo);
 
   if (true) {
-    let varFour = "varFour";
+    const varFour = 'varFour';
   }
 }
 
 if (true) {
-  let varThree = "varThree";
+  const varThree = 'varThree';
 }
 
 console.log(varTwo);

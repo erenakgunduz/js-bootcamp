@@ -4,29 +4,24 @@ const gradeCalc = (studentScore, totalScore) => {
 
   // Determining the possible letter grades
   if (percentGrade >= 0.9) {
-    letterGrade = "A";
+    letterGrade = 'A';
   } else if (percentGrade < 0.9 && percentGrade >= 0.8) {
-    letterGrade = "B";
+    letterGrade = 'B';
   } else if (percentGrade < 0.8 && percentGrade >= 0.7) {
-    letterGrade = "C";
+    letterGrade = 'C';
   } else if (percentGrade < 0.7 && percentGrade >= 0.6) {
-    letterGrade = "D";
+    letterGrade = 'D';
   } else if (percentGrade < 0.6 && percentGrade >= 0) {
-    letterGrade = "F";
+    letterGrade = 'F';
   } else {
-    letterGrade = "wtf";
+    letterGrade = 'wtf';
   }
 
   // Grammar-based return of the function
-  if (letterGrade === "A" || letterGrade === "F") {
-    return `${studentScore}/${totalScore} -> You got an ${letterGrade} (${
-      percentGrade * 100
-    }%)!`;
-  } else {
-    return `${studentScore}/${totalScore} -> You got a ${letterGrade} (${
-      percentGrade * 100
-    }%)!`;
+  if (letterGrade === 'A' || letterGrade === 'F') {
+    return `${studentScore}/${totalScore} -> You got an ${letterGrade} (${percentGrade * 100}%)!`;
   }
+  return `${studentScore}/${totalScore} -> You got a ${letterGrade} (${percentGrade * 100}%)!`;
 };
 
 // Calls the function with our provided values

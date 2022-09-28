@@ -1,16 +1,16 @@
-let restaurant = {
-  name: "Shake Shack",
-  guestCapacity: 75,
+const restaurant = {
+  name: 'Halim Usta',
+  guestCapacity: 35,
   guestCount: 0,
   checkAvailability: function (partySize) {
-    let seatsLeft = this.guestCapacity - this.guestCount;
+    const seatsLeft = this.guestCapacity - this.guestCount;
     return partySize <= seatsLeft;
   },
   seatParty: function (partySize) {
-    this.guestCount = this.guestCount + partySize;
+    this.guestCount += partySize;
   },
   removeParty: function (partySize) {
-    this.guestCount = this.guestCount - partySize;
+    this.guestCount -= partySize;
   },
 };
 

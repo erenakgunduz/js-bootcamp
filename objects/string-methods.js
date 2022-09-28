@@ -1,4 +1,4 @@
-let myName = "  Eren  ";
+let myName = '  Eren  ';
 
 // Length property
 console.log(myName.length);
@@ -10,8 +10,8 @@ console.log(myName.toUpperCase());
 console.log(myName.toLowerCase());
 
 // Includes method
-let password = "abc123asdf098";
-console.log(password.includes("password"));
+let password = 'abc123asdf098';
+console.log(password.includes('password'));
 
 // Trim
 console.log(myName.trim());
@@ -24,9 +24,9 @@ const isValidPassword = (password) => {
   // } else {
   //   return false;
   // }
-  return password.length > 8 && !password.includes("password");
+  return password.length > 8 && !password.includes('password');
 };
 
-console.log(isValidPassword("asdfp"));
-console.log(isValidPassword("abcnssf%$%&^#"));
-console.log(isValidPassword("dfasfasfmnamdpasswordsdfg"));
+console.log(isValidPassword('asdfp'));
+console.log(isValidPassword('abcnssf%$%&^#'));
+console.log(isValidPassword('dfasfasfmnamdpasswordsdfg'));

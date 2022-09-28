@@ -17,18 +17,18 @@ const ConvertCtoK = (celsius) => {
   return kelvin;
 };
 
-const readline = require("readline").createInterface({
+const readline = require('readline').createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
-readline.question("\nTemperature in °F: ", (temp) => {
+readline.question('\nTemperature in °F: ', (temp) => {
   // Calls the functions and prints the calculations
   let celsiusTemp = ConvertFtoC(temp);
-  console.log("\nTemperature in °C: " + Math.round(celsiusTemp));
+  console.log('\nTemperature in °C: ' + Math.round(celsiusTemp));
 
   let kelvinTemp = ConvertCtoK(celsiusTemp);
-  console.log("\nTemperature in Kelvin: " + Math.round(kelvinTemp) + " K");
+  console.log('\nTemperature in Kelvin: ' + Math.round(kelvinTemp) + ' K');
 
   readline.close();
 });

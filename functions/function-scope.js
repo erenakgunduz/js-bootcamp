@@ -15,6 +15,6 @@ let ConvertFtoC = (fahrenheit) => {
 let tempOne = ConvertFtoC(32);
 let tempTwo = ConvertFtoC(68);
 
-console.log("------");
+console.log('------');
 console.log(tempOne);
 console.log(tempTwo);
