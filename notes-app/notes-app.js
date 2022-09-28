@@ -13,7 +13,10 @@
 
 let notes = getSavedNotes();
 
-const filters = { searchText: '' };
+const filters = {
+  searchText: '',
+  sortBy: 'byEdited',
+};
 
 // const user = {
 //   name: "Eren",
@@ -39,7 +42,13 @@ renderNotes(notes, filters);
 // document.querySelector("body").appendChild(newParagraph);
 
 document.querySelector('#create-note').addEventListener('click', () => {
-  notes.push({ id: crypto.randomUUID(), title: '', body: '' });
+  notes.push({
+    id: crypto.randomUUID(),
+    title: '',
+    body: '',
+    createdAt: new Date().getTime(),
+    updatedAt: new Date().getTime(),
+  });
   saveNotes(notes);
   location.assign(`/notes-app/edit.html#${notes.at(-1).id}`);
 });
@@ -50,7 +59,8 @@ document.querySelector('#search-text').addEventListener('input', (e) => {
 });
 
 document.querySelector('#filter-by').addEventListener('change', (e) => {
-  console.log(e.target.value);
+  filters.sortBy = e.target.value;
+  renderNotes(notes, filters);
 });
 
 window.addEventListener('storage', (e) => {

@@ -1,6 +1,9 @@
+import { generateLastEdited } from './imports.js';
+
 const titleElement = document.querySelector('#note-title');
 const bodyElement = document.querySelector('#note-body');
 const removeElement = document.querySelector('#remove-note');
+const updatedElement = document.querySelector('#updated-at');
 const noteID = location.hash.substring(1);
 
 let notes = getSavedNotes();
@@ -19,6 +22,7 @@ const initialize = (myNote) => {
   }
 
   titleElement.value = myNote.title;
+  updatedElement.textContent = generateLastEdited(myNote.updatedAt);
   bodyElement.value = myNote.body;
 };
 
@@ -26,12 +30,16 @@ initialize(note);
 
 titleElement.addEventListener('input', (e) => {
   note.title = e.target.value;
+  note.updatedAt = new Date().getTime();
   saveNotes(notes);
+  initialize(note);
 });
 
 bodyElement.addEventListener('input', (e) => {
   note.body = e.target.value;
+  note.updatedAt = new Date().getTime();
   saveNotes(notes);
+  initialize(note);
 });
 
 removeElement.addEventListener('click', () => {

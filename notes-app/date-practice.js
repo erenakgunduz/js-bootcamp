@@ -21,7 +21,6 @@ console.log(format(nowChanged, 'MMMM do, yyyy'));
 console.log(formatDistance(new Date('5 Oct 2023'), nowChanged, { addSuffix: true }));
 console.log(formatDistanceToNow(new Date('8/15/2022'), { addSuffix: true }));
 
-// Working with timestamps
 const nowTimestamp = getTime(now);
 console.log(nowTimestamp, nowTimestamp === now.getTime()); // returns true, obviously
 console.log(new Date(nowTimestamp).toString());

@@ -21,7 +21,8 @@
     "object-shorthand": "off",
     "class-methods-use-this": "off",
     // My temporary rules (for bootcamp only)
-    "import/no-unresolved": [2, { "ignore": ["^https:\/\/cdn.skypack.dev"] }],
+    "import/no-unresolved": [2, { "ignore": ["^https://cdn.skypack.dev", "^https://esm.sh"] }],
+    "import/extensions": ["error", "ignorePackages"],
     "no-use-before-define": ["error", { "functions": false }],
     "no-restricted-globals": "warn",
     "no-undef": "warn"
