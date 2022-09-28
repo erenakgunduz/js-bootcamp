@@ -76,7 +76,7 @@ const sortNotes = (notes, sort) => {
     });
   }
   if (sort === 'alphabetical') {
-    // Comparison operators flipped to achieve descending order as is standard
+    // Comparison operators flipped to achieve standard alphabetical order (A -> Z)
     return notes.sort((a, b) => {
       if (a.title.toLowerCase() < b.title.toLowerCase()) {
         return -1;
