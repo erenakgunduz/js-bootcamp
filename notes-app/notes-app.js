@@ -13,9 +13,7 @@
 
 let notes = getSavedNotes();
 
-const filters = {
-  searchText: "",
-};
+const filters = { searchText: '' };
 
 // const user = {
 //   name: "Eren",
@@ -40,22 +38,22 @@ renderNotes(notes, filters);
 // newParagraph.textContent = "This is a new element from JavaScript";
 // document.querySelector("body").appendChild(newParagraph);
 
-document.querySelector("#create-note").addEventListener("click", () => {
-  notes.push({ id: crypto.randomUUID(), title: "", body: "" });
+document.querySelector('#create-note').addEventListener('click', () => {
+  notes.push({ id: crypto.randomUUID(), title: '', body: '' });
   saveNotes(notes);
   location.assign(`/notes-app/edit.html#${notes.at(-1).id}`);
 });
 
-document.querySelector("#search-text").addEventListener("input", (e) => {
+document.querySelector('#search-text').addEventListener('input', (e) => {
   filters.searchText = e.target.value;
   renderNotes(notes, filters);
 });
 
-document.querySelector("#filter-by").addEventListener("change", (e) => {
+document.querySelector('#filter-by').addEventListener('change', (e) => {
   console.log(e.target.value);
 });
 
-window.addEventListener("storage", (e) => {
+window.addEventListener('storage', (e) => {
   notes = JSON.parse(e.newValue);
   renderNotes(notes, filters);
 });
