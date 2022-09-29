@@ -1,7 +1,11 @@
 // Fetch existing todos from localStorage
 const getSavedTodos = () => {
   const todosJSON = localStorage.getItem('todos');
-  return todosJSON ? JSON.parse(todosJSON) : [];
+  try {
+    return todosJSON ? JSON.parse(todosJSON) : [];
+  } catch (e) {
+    return [];
+  }
 };
 
 // Append a new incomplete todo item
