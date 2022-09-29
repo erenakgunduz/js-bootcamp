@@ -13,7 +13,7 @@ const noteMatch = (myNotes) => myNotes.find((note) => note.id === noteID);
 let note = noteMatch(notes);
 
 const initialize = (myNote) => {
-  if (myNote === undefined) {
+  if (!myNote) {
     location.assign('/notes-app/index.html');
   }
 

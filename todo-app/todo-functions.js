@@ -1,7 +1,7 @@
 // Fetch existing todos from localStorage
 const getSavedTodos = () => {
   const todosJSON = localStorage.getItem('todos');
-  return todosJSON !== null ? JSON.parse(todosJSON) : [];
+  return todosJSON ? JSON.parse(todosJSON) : [];
 };
 
 // Append a new incomplete todo item
@@ -33,7 +33,7 @@ const removeTodo = (id) => {
 const toggleTodo = (id, e) => {
   const todoToggle = todos.find((todo) => todo.id === id);
 
-  if (todoToggle !== undefined) {
+  if (todoToggle) {
     todoToggle.completed = !todoToggle.completed;
   }
   e.target.checked = todoToggle.completed;
