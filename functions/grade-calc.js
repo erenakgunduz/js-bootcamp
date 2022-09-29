@@ -1,4 +1,8 @@
 const gradeCalc = (studentScore, totalScore) => {
+  if (typeof studentScore !== 'number' || typeof totalScore !== 'number') {
+    throw TypeError('Please provide numbers only');
+  }
+
   const percentGrade = studentScore / totalScore;
   let letterGrade;
 
@@ -18,12 +22,16 @@ const gradeCalc = (studentScore, totalScore) => {
   }
 
   // Grammar-based return of the function
-  if (letterGrade === 'A' || letterGrade === 'F') {
-    return `${studentScore}/${totalScore} -> You got an ${letterGrade} (${percentGrade * 100}%)!`;
-  }
-  return `${studentScore}/${totalScore} -> You got a ${letterGrade} (${percentGrade * 100}%)!`;
+  const output = `${studentScore}/${totalScore} -> You got an ${letterGrade} (${
+    percentGrade * 100
+  }%)!`;
+  return letterGrade === 'A' || letterGrade === 'F' ? output : output.replace('an', 'a');
 };
 
 // Calls the function with our provided values
-const exampleScore = gradeCalc(15, 20);
-console.log(exampleScore);
+try {
+  const exampleScore = gradeCalc(19, 20);
+  console.log(exampleScore);
+} catch (TypeError) {
+  console.error(TypeError.message);
+}
