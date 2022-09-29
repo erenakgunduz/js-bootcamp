@@ -17,7 +17,7 @@ Hangman.prototype.getPuzzle = function () {
 
   puzzle = puzzle.join('');
   if (this.guesses >= 0) {
-    if (this.guesses < 1 && puzzle.includes('*')) {
+    if (this.guesses === 0 && puzzle.includes('*')) {
       console.log(puzzle);
       this.finished = 1;
       return `You lose! The word was '${this.word.join('')}'`;
@@ -30,7 +30,7 @@ Hangman.prototype.getPuzzle = function () {
     return puzzle;
   }
   this.finished = 1;
-  return 'It seems you already finished this game :)';
+  return 'You already finished this game :)';
 };
 
 Hangman.prototype.makeGuess = function (guess) {
@@ -54,6 +54,8 @@ Hangman.prototype.makeGuess = function (guess) {
     } else {
       this.guessedLetters.push(guess);
     }
+  } else {
+    throw TypeError(`Expected array or string, got ${typeof guess}`);
   }
   this.guesses -= 1;
   console.log(this.getPuzzle());
