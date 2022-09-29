@@ -1,10 +1,7 @@
 // Fetch existing todos from localStorage
 const getSavedTodos = () => {
   const todosJSON = localStorage.getItem('todos');
-  if (todosJSON !== null) {
-    return JSON.parse(todosJSON);
-  }
-  return [];
+  return todosJSON !== null ? JSON.parse(todosJSON) : [];
 };
 
 // Append a new incomplete todo item
@@ -108,9 +105,8 @@ function renderTodos(todos, filters) {
 
   // Also need event listener here to respond to every change to checkbox state
   document.querySelector('#hide-completed').addEventListener('change', (e) => {
-    if (e.target.checked) {
-      return generateTodoDOM(filteredTodos(getPendingTodos));
-    }
-    return generateTodoDOM(filteredTodos(todos));
+    return e.target.checked
+      ? generateTodoDOM(filteredTodos(getPendingTodos))
+      : generateTodoDOM(filteredTodos(todos));
   });
 }
