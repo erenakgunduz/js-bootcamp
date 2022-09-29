@@ -8,11 +8,7 @@ const noteID = location.hash.substring(1);
 
 let notes = getSavedNotes();
 
-const noteMatch = (myNotes) => {
-  return myNotes.find((note) => {
-    return note.id === noteID;
-  });
-};
+const noteMatch = (myNotes) => myNotes.find((note) => note.id === noteID);
 
 let note = noteMatch(notes);
 

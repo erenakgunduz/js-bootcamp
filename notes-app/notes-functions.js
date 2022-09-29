@@ -15,9 +15,7 @@ const saveNotes = (notes) => {
 
 // Remove a note from the list
 const removeNote = (id) => {
-  const noteIndex = notes.findIndex((note) => {
-    return note.id === id;
-  });
+  const noteIndex = notes.findIndex((note) => note.id === id);
 
   if (noteIndex > -1) {
     notes.splice(noteIndex, 1);
@@ -93,9 +91,9 @@ const sortNotes = (notes, sort) => {
 // Render application notes
 function renderNotes(notes, filters) {
   const myNotes = sortNotes(notes, filters.sortBy);
-  const filteredNotes = myNotes.filter((note) => {
-    return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
-  });
+  const filteredNotes = myNotes.filter((note) =>
+    note.title.toLowerCase().includes(filters.searchText.toLowerCase())
+  );
 
   document.querySelector('.notes .note-list').innerHTML = '';
 

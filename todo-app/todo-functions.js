@@ -25,9 +25,7 @@ const saveTodos = (todos) => {
 
 // Remove a todo from the list
 const removeTodo = (id) => {
-  const todoIndex = todos.findIndex((todo) => {
-    return todo.id === id;
-  });
+  const todoIndex = todos.findIndex((todo) => todo.id === id);
 
   if (todoIndex > -1) {
     todos.splice(todoIndex, 1);
@@ -36,9 +34,7 @@ const removeTodo = (id) => {
 
 // Toggle checkbox for a todo
 const toggleTodo = (id, e) => {
-  const todoToggle = todos.find((todo) => {
-    return todo.id === id;
-  });
+  const todoToggle = todos.find((todo) => todo.id === id);
 
   if (todoToggle !== undefined) {
     todoToggle.completed = !todoToggle.completed;
@@ -95,16 +91,10 @@ const generateTodoDOM = (render) => {
 
 // Render application todos based on filters
 function renderTodos(todos, filters) {
-  const filteredTodos = (list) => {
-    return list.filter((item) => {
-      return item.text.toLowerCase().includes(filters.searchText.toLowerCase());
-    });
-  };
+  const filteredTodos = (list) =>
+    list.filter((item) => item.text.toLowerCase().includes(filters.searchText.toLowerCase()));
 
-  const getPendingTodos = todos.filter((todo) => {
-    return !todo.completed;
-  });
-
+  const getPendingTodos = todos.filter((todo) => !todo.completed);
   document.querySelector('header').innerHTML = '<h1>Todo App</h1>';
   getSummary(filteredTodos(getPendingTodos));
 
