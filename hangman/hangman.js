@@ -17,7 +17,8 @@ Hangman.prototype.getPuzzle = function () {
   });
 
   puzzle = puzzle.join('');
-  if (this.guesses >= 0) {
+  // Establish the different scenarios
+  if (this.guesses >= 0 && !this.finished) {
     if (this.guesses === 0 && puzzle.includes('*')) {
       console.log(puzzle);
       this.finished = 1;
@@ -30,7 +31,6 @@ Hangman.prototype.getPuzzle = function () {
     }
     return puzzle;
   }
-  this.finished = 1;
   return 'You already finished this game :)';
 };
 
@@ -90,9 +90,8 @@ Hangman.prototype.makeGuess = function (guess) {
 };
 
 const game1 = new Hangman('Cat', 2);
-game1.makeGuess('c');
-game1.makeGuess('t');
-game1.makeGuess(['c', 'tz']);
 
-const game2 = new Hangman('New Jersey', 4);
-game2.makeGuess('w');
+window.addEventListener('keypress', (e) => {
+  const guess = e.key;
+  game1.makeGuess(guess);
+});
