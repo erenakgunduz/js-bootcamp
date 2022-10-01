@@ -26,7 +26,7 @@ Hangman.prototype.getPuzzle = function () {
     puzzleElement.textContent = puzzle;
     if (this.guesses === 0 && puzzle.includes('*')) {
       this.status = 'failed';
-      outcomeElement.textContent = `The word was '${this.word.join('')} - next time? :)'`;
+      outcomeElement.textContent = `The word was '${this.word.join('')}' - next time? :)`;
       return true;
     }
     if (!puzzle.includes('*')) {
