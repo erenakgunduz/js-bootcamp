@@ -25,6 +25,7 @@
     "import/extensions": ["error", "ignorePackages"],
     "no-use-before-define": ["error", { "functions": false }],
     "no-restricted-globals": "warn",
-    "no-undef": "warn"
+    "no-undef": "warn",
+    "max-classes-per-file": "off"
   }
 }

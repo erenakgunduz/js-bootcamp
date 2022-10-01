@@ -1,6 +1,6 @@
 // Prototypal inheritance
+// Employee.prototype --> Person.prototype --> Object.prototype --> null
 
-// Now restructured using class syntax
 class Person {
   constructor(firstName, lastName, age, likes = []) {
     this.firstName = firstName;
@@ -26,9 +26,49 @@ class Person {
   }
 }
 
+class Employee extends Person {
+  constructor(firstName, lastName, age, position, likes) {
+    super(firstName, lastName, age, likes);
+    this.position = position;
+  }
+
+  getBio = () => `${this.firstName} is a ${this.position}`;
+
+  getYearsLeft = () => 65 - this.age;
+}
+
 const me = new Person('Eren', 'Akgündüz', 20, ['music', 'geography']);
 me.setName('Greatest Ever');
 console.log(me.getBio());
 
-const person2 = new Person('Skepta', 'Adenuga', 40, ['go on then', 'fashion']);
+const person2 = new Employee('Skepta', 'Adenuga', 40, 'MC', ['go on then', 'fashion']);
+console.log(person2.getYearsLeft());
 console.log(person2.getBio());
+
+class Student extends Person {
+  constructor(firstName, lastName, age, major, grade) {
+    super(firstName, lastName, age);
+    this.major = major;
+    this.grade = grade;
+  }
+
+  getBio() {
+    const intro = `${this.firstName}, who studies ${this.major.toLowerCase()},`;
+    if (this.grade >= 0 && this.grade < 70) {
+      return `${intro} is failing the class`;
+    }
+    if (this.grade <= 100 && this.grade >= 70) {
+      return `${intro} is passing the class`;
+    }
+    return `I don't know wtf ${this.firstName} is doing`;
+  }
+
+  updateGrade(change) {
+    this.grade += change;
+  }
+}
+
+const johnCena = new Student('John', 'Cena', 25, 'Thuganomics', 100);
+console.log(johnCena.getBio());
+johnCena.updateGrade(-40);
+console.log(johnCena.getBio());
