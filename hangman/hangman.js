@@ -26,12 +26,12 @@ Hangman.prototype.getPuzzle = function () {
     puzzleElement.textContent = puzzle;
     if (this.guesses === 0 && puzzle.includes('*')) {
       this.status = 'failed';
-      outcomeElement.textContent = `You lose! The word was '${this.word.join('')}'`;
+      outcomeElement.textContent = `The word was '${this.word.join('')} - next time? :)'`;
       return true;
     }
     if (!puzzle.includes('*')) {
       this.status = 'finished';
-      outcomeElement.textContent = 'You win! Congratulations :)';
+      outcomeElement.textContent = 'You got it! Congratulations :)';
       return true;
     }
     return false;
