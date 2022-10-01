@@ -1,9 +1,9 @@
-const Hangman = function (word, guesses) {
+export default function Hangman(word, guesses) {
   this.word = word.toLowerCase().split('');
   this.guesses = guesses;
   this.guessedLetters = [];
   this.finished = false;
-};
+}
 
 Hangman.prototype.getPuzzle = function () {
   let puzzle = this.word.join('').replaceAll(/\S/g, '*').split('');
@@ -92,11 +92,3 @@ Hangman.prototype.makeGuess = function (guess) {
     }
   }
 };
-
-const game1 = new Hangman('Cat', 2);
-
-game1.getPuzzle();
-window.addEventListener('keypress', (e) => {
-  const guess = e.key;
-  game1.makeGuess(guess);
-});
