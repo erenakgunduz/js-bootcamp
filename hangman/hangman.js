@@ -2,7 +2,7 @@ const Hangman = function (word, guesses) {
   this.word = word.toLowerCase().split('');
   this.guesses = guesses;
   this.guessedLetters = [];
-  this.finished = 0;
+  this.finished = false;
 };
 
 Hangman.prototype.getPuzzle = function () {
@@ -18,20 +18,23 @@ Hangman.prototype.getPuzzle = function () {
 
   puzzle = puzzle.join('');
   // Establish the different scenarios
+  const puzzleElement = document.querySelector('main .puzzle');
+  const outcomeElement = document.querySelector('main .outcome');
+  const finishElement = document.querySelector('main .finished');
   if (this.guesses >= 0 && !this.finished) {
+    puzzleElement.textContent = puzzle;
     if (this.guesses === 0 && puzzle.includes('*')) {
-      console.log(puzzle);
-      this.finished = 1;
-      return `You lose! The word was '${this.word.join('')}'`;
+      outcomeElement.textContent = `You lose! The word was '${this.word.join('')}'`;
+      return true;
     }
     if (!puzzle.includes('*')) {
-      console.log(puzzle);
-      this.finished = 1;
-      return 'You win! Congratulations :)';
+      outcomeElement.textContent = 'You win! Congratulations :)';
+      return true;
     }
-    return puzzle;
+    return false;
   }
-  return 'You already finished this game :)';
+  finishElement.textContent = 'You already finished this game :)';
+  return true;
 };
 
 Hangman.prototype.makeGuess = function (guess) {
@@ -79,19 +82,20 @@ Hangman.prototype.makeGuess = function (guess) {
   [...new Set(thisGuess)].forEach((thisLetter) => this.guessedLetters.push(thisLetter));
   this.guessedLetters = [...new Set(this.guessedLetters)];
   // console.debug(this.guessedLetters);
-  console.log(this.getPuzzle());
+  this.finished = this.getPuzzle();
   if (!this.finished) {
+    const remainElement = document.querySelector('main .remaining');
     if (this.guesses === 1) {
-      console.log('You have one guess left. Last chance ;)');
+      remainElement.textContent = 'You have one guess left. Last chance ;)';
     } else {
-      console.log(`You have ${this.guesses} guesses left`);
+      remainElement.textContent = `You have ${this.guesses} guesses left`;
     }
   }
 };
 
 const game1 = new Hangman('Cat', 2);
 
-console.log(game1.getPuzzle());
+game1.getPuzzle();
 window.addEventListener('keypress', (e) => {
   const guess = e.key;
   game1.makeGuess(guess);
