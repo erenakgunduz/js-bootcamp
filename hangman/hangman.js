@@ -3,6 +3,7 @@ export default function Hangman(word, guesses) {
   this.guesses = guesses;
   this.guessedLetters = [];
   this.finished = false;
+  this.status = 'playing';
 }
 
 Hangman.prototype.getPuzzle = function () {
@@ -24,10 +25,12 @@ Hangman.prototype.getPuzzle = function () {
   if (this.guesses >= 0 && !this.finished) {
     puzzleElement.textContent = puzzle;
     if (this.guesses === 0 && puzzle.includes('*')) {
+      this.status = 'failed';
       outcomeElement.textContent = `You lose! The word was '${this.word.join('')}'`;
       return true;
     }
     if (!puzzle.includes('*')) {
+      this.status = 'finished';
       outcomeElement.textContent = 'You win! Congratulations :)';
       return true;
     }
@@ -91,4 +94,5 @@ Hangman.prototype.makeGuess = function (guess) {
       remainElement.textContent = `You have ${this.guesses} guesses left`;
     }
   }
+  // console.debug(this.status);
 };
