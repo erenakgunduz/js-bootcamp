@@ -14,18 +14,20 @@
   "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": "error",
+    "no-underscore-dangle": ["error", { "allowAfterThis": true }],
     "no-unused-vars": "warn",
     "no-console": "off",
     "func-names": "off",
     "no-process-exit": "off",
     "object-shorthand": "off",
     "class-methods-use-this": "off",
-    // My temporary rules (for bootcamp only)
+    // Temporary rules - some for bootcamp only, others I may consider for future
     "import/no-unresolved": [2, { "ignore": ["^https://cdn.skypack.dev", "^https://esm.sh"] }],
     "import/extensions": ["error", "ignorePackages"],
     "no-use-before-define": ["error", { "functions": false }],
     "no-restricted-globals": "warn",
     "no-undef": "warn",
+    "no-plusplus": "off",
     "max-classes-per-file": "off"
   }
 }

@@ -18,8 +18,12 @@ class Person {
     return bio;
   }
 
-  setName(fullName) {
-    const names = fullName.split(' ');
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
+
+  set fullName(name) {
+    const names = name.split(' ');
     const [firstName, lastName] = names; // Destructuring assignment
     this.firstName = firstName;
     this.lastName = lastName;
@@ -32,13 +36,13 @@ class Employee extends Person {
     this.position = position;
   }
 
-  getBio = () => `${this.firstName} is a ${this.position}`;
+  getBio = () => `${this.fullName} is a ${this.position}`;
 
   getYearsLeft = () => 65 - this.age;
 }
 
 const me = new Person('Eren', 'Akgündüz', 20, ['music', 'geography']);
-me.setName('Greatest Ever');
+me.fullName = 'Greatest Ever';
 console.log(me.getBio());
 
 const person2 = new Employee('Skepta', 'Adenuga', 40, 'MC', ['go on then', 'fashion']);

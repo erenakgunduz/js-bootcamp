@@ -82,7 +82,7 @@ export default class Hangman {
     // console.debug('Bad guess?', badGuess, 'Unique guess?', uniqueGuess);
     // So, we're saying "decrement only if it's a bad AND a unique guess"
     if (badGuess && uniqueGuess) {
-      this.guesses -= 1;
+      this.guesses--;
     }
     // Cleaning duplicates before pushing and for final array of all guessed letters
     [...new Set(thisGuess)].forEach((thisLetter) => this.guessedLetters.push(thisLetter));
