@@ -7,7 +7,7 @@ export default class Hangman {
     this.status = 'playing';
   }
 
-  getPuzzle() {
+  get game() {
     let puzzle = this.word.join('').replaceAll(/\S/g, '*').split('');
 
     // Swap asterisks back out with actual discovered letters
@@ -88,7 +88,7 @@ export default class Hangman {
     [...new Set(thisGuess)].forEach((thisLetter) => this.guessedLetters.push(thisLetter));
     this.guessedLetters = [...new Set(this.guessedLetters)];
     // console.debug(this.guessedLetters);
-    this.finished = this.getPuzzle();
+    this.finished = this.game;
     if (!this.finished) {
       const remainElement = document.querySelector('main .remaining');
       if (this.guesses === 1) {
