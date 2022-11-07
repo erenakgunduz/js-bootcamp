@@ -1,4 +1,14 @@
 import Hangman from './hangman.js';
+import { getPuzzle, getCountry } from './requests.js';
+
+getPuzzle((error, puzzle) => {
+  if (error) {
+    console.log(`Error: ${error}`);
+  } else {
+    console.log(puzzle);
+  }
+});
+getCountry('BB');
 
 const game1 = new Hangman('Cat', 2);
 
