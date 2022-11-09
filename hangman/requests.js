@@ -10,7 +10,7 @@ export function getPuzzle(callback) {
       const data = JSON.parse(e.target.responseText);
       callback(undefined, data.puzzle);
     } else if (e.target.readyState === 4) {
-      callback(`${e.target.status}`, undefined);
+      callback(e.target.status, undefined);
     }
   });
 
