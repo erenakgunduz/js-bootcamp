@@ -21,12 +21,12 @@ const readline = require('readline').createInterface({
   output: process.stdout,
 });
 
-readline.question('\nTemperature in °F: ', (myTemp) => {
+readline.question('Temperature in °F: ', (myTemp) => {
   // Only need to call the function once, then we can use the returned properties
   const temp = tempConverter(myTemp);
 
-  console.log(`\nTemperature in °C: ${parseFloat(temp.celsius.toFixed(2))}`);
-  console.log(`\nTemperature in Kelvin: ${parseFloat(temp.kelvin.toFixed(2))} K\n`);
+  console.log(`\nTemperature in °C: ${parseFloat(temp.celsius.toFixed(2))}\n`);
+  console.log(`Temperature in Kelvin: ${parseFloat(temp.kelvin.toFixed(2))} K`);
 
   readline.close();
 });

@@ -17,11 +17,11 @@ const sortNotes = (notes) => {
   notes.sort((a, b) => {
     if (a.title.toLowerCase() < b.title.toLowerCase()) {
       return -1;
-    } else if (b.title.toLowerCase() < a.title.toLowerCase()) {
-      return 1;
-    } else {
-      return 0;
     }
+    if (b.title.toLowerCase() < a.title.toLowerCase()) {
+      return 1;
+    }
+    return 0;
   });
 };
 
@@ -32,7 +32,7 @@ const findNote = (notes, noteTitle) => {
 };
 
 const findNotes = (notes, query) => {
-  return notes.filter((note, index) => {
+  return notes.filter((note) => {
     const isTitleMatch = note.title.toLowerCase().includes(query.toLowerCase());
     const isBodyMatch = note.body.toLowerCase().includes(query.toLowerCase());
     return isTitleMatch || isBodyMatch;

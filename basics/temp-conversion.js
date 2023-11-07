@@ -8,12 +8,12 @@
 
 // Arrow functions
 const ConvertFtoC = (fahrenheit) => {
-  let celsius = (parseInt(fahrenheit) - 32) * (5 / 9);
+  const celsius = (parseInt(fahrenheit, 10) - 32) * (5 / 9);
   return celsius;
 };
 
 const ConvertCtoK = (celsius) => {
-  let kelvin = parseFloat(celsius) + 273.15;
+  const kelvin = parseFloat(celsius) + 273.15;
   return kelvin;
 };
 
@@ -22,13 +22,13 @@ const readline = require('readline').createInterface({
   output: process.stdout,
 });
 
-readline.question('\nTemperature in °F: ', (temp) => {
+readline.question('Temperature in °F: ', (temp) => {
   // Calls the functions and prints the calculations
-  let celsiusTemp = ConvertFtoC(temp);
-  console.log('\nTemperature in °C: ' + Math.round(celsiusTemp));
+  const celsiusTemp = ConvertFtoC(temp);
+  console.log(`\nTemperature in °C: ${Math.round(celsiusTemp)}\n`);
 
-  let kelvinTemp = ConvertCtoK(celsiusTemp);
-  console.log('\nTemperature in Kelvin: ' + Math.round(kelvinTemp) + ' K');
+  const kelvinTemp = ConvertCtoK(celsiusTemp);
+  console.log(`Temperature in Kelvin: ${kelvinTemp.toFixed(2)} K`);
 
   readline.close();
 });

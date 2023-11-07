@@ -2,13 +2,13 @@ const account = {
   owner: 'Andrew',
   expenses: [],
   incomes: [],
-  addExpense: function (description, amount) {
+  addExpense(description, amount) {
     this.expenses.push({ description: description, amount: amount });
   },
-  addIncome: function (description, amount) {
+  addIncome(description, amount) {
     this.incomes.push({ description: description, amount: amount });
   },
-  getAccountSummary: function () {
+  getAccountSummary() {
     let totalExpenses = 0;
     let totalIncome = 0;
 
