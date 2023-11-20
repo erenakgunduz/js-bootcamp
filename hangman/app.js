@@ -8,6 +8,10 @@ getPuzzle((error, puzzle) => {
     console.log(puzzle);
   }
 });
+// Slow synchronous version for demonstration purposes
+// const puzzle = getPuzzleSync();
+// console.log(puzzle);
+
 getCountry('BB');
 
 const game1 = new Hangman('Cat', 2);

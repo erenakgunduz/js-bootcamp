@@ -18,6 +18,22 @@ export function getPuzzle(callback) {
   request.send();
 }
 
+export function getPuzzleSync() {
+  const request = new XMLHttpRequest();
+  let response;
+  request.open('GET', 'https://puzzle.mead.io/slow-puzzle?wordCount=2', false); // passing false as 3rd argument makes it run synchronously
+  request.send();
+
+  if (request.readyState === 4 && request.status === 200) {
+    const data = JSON.parse(request.responseText);
+    response = data.puzzle;
+  } else if (request.readyState === 4) {
+    response = request.status;
+    throw new Error(`Nah rudeboy, ${response}`);
+  }
+  return response;
+}
+
 export function getCountry(countryCode) {
   const countryRequest = new XMLHttpRequest();
 

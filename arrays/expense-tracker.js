@@ -3,10 +3,10 @@ const account = {
   expenses: [],
   incomes: [],
   addExpense(description, amount) {
-    this.expenses.push({ description: description, amount: amount });
+    this.expenses.push({ description, amount });
   },
   addIncome(description, amount) {
-    this.incomes.push({ description: description, amount: amount });
+    this.incomes.push({ description, amount });
   },
   getAccountSummary() {
     let totalExpenses = 0;
