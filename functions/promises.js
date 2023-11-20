@@ -1,15 +1,20 @@
 // Callback
-const getDataCallback = (callback) => {
+const getDataCallback = (num, callback) => {
   setTimeout(() => {
-    callback('This is a callback error', 'This is the data');
+    if (typeof num === 'number') {
+      callback(undefined, num * 2);
+    } else {
+      callback(TypeError('Number must be provided'));
+    }
   }, 2000);
 };
 
-getDataCallback((err, data) => {
-  if (err) {
-    console.log(err);
+// Callback hell example
+getDataCallback(2, (error, myData) => {
+  if (error) {
+    console.log(error);
   } else {
-    console.log(data);
+    getDataCallback(myData, (err, data) => (err ? console.log(err) : console.log(data)));
   }
 });
 
@@ -19,16 +24,26 @@ getDataCallback((err, data) => {
 // 3) Also since either can only execute some action one time
 // 4) More options for when data comes in (promise 'fulfills')
 
-const getDataPromise = (data) =>
+const getDataPromise = (num) =>
   new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(`This is the promise data: ${data}`);
-      // reject(new Error('This is a promise error'));
-    }, 2000);
+    setTimeout(
+      () =>
+        typeof num === 'number' ? resolve(num * 2) : reject(TypeError('Number must be provided')),
+      2000
+    );
   });
-const myPromise = getDataPromise(35);
 
-myPromise.then(
-  (data) => console.log(data),
+getDataPromise(2).then(
+  (myData) =>
+    getDataPromise(myData).then(
+      (data) => console.log(`Promise data: ${data}`),
+      (err) => console.log(err)
+    ),
   (err) => console.log(err)
 );
+
+getDataPromise(10)
+  .then((data) => getDataPromise(data))
+  .then((data) => getDataPromise(data))
+  .then((data) => console.log(data))
+  .catch((err) => console.log(err));
