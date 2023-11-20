@@ -1,5 +1,5 @@
 import Hangman from './hangman.js';
-import { getPuzzle, getCountry } from './requests.js';
+import { getPuzzle, getCountry, getLocation } from './requests.js';
 
 getPuzzle(2)
   .then((puzzle) => console.log(puzzle))
@@ -10,6 +10,17 @@ getPuzzle(2)
 
 getCountry('KP')
   .then((country) => console.log(country))
+  .catch((err) => console.log(err));
+
+getLocation()
+  .then((location) => {
+    const countryCode = location.pop();
+    console.log(`Hold tight the ${location.join(', ')} crew`);
+    console.debug(countryCode);
+    return countryCode;
+  })
+  .then((cCode) => getCountry(cCode))
+  .then((ctry) => console.log(ctry))
   .catch((err) => console.log(err));
 
 const game1 = new Hangman('Cat', 2);

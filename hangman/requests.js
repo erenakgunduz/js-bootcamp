@@ -42,3 +42,14 @@ export function getCountry(countryCode) {
       return countryName.name.common;
     });
 }
+
+export function getLocation() {
+  return fetch('http://ip-api.com/json/')
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      }
+      throw new Error(`Unable to fetch location, ${response.status} response`);
+    })
+    .then((data) => [data.city, data.regionName, data.country, data.countryCode]);
+}
