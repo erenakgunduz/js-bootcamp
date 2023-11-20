@@ -12,7 +12,7 @@ export default class Hangman {
   }
 
   get game() {
-    let puzzle = this.word.join('').replaceAll(/\S/g, '*').split('');
+    const puzzle = this.word.join('').replaceAll(/\S/g, '*').split('');
 
     // Swap asterisks back out with actual discovered letters
     this.word.forEach((letter, index) => {
@@ -22,18 +22,20 @@ export default class Hangman {
       }
     });
 
-    puzzle = puzzle.join('');
     // Establish the different scenarios
     if (this.guesses >= 0 && !this.finished) {
-      this.puzzleElement.textContent = puzzle;
+      const letterElements = [];
+      puzzle.forEach((letter) => {
+        letterElements.push(`<span>${letter}</span>`);
+        this.puzzleElement.innerHTML = letterElements.join('');
+      });
       this.remainElement.textContent = `You have ${this.guesses} guesses left`;
       this.outcomeElement.textContent = '';
       this.finishElement.textContent = '';
       if (this.guesses === 0 && puzzle.includes('*')) {
         this.status = 'failed';
-        this.outcomeElement.innerHTML = `The word was '<strong>${this.word.join(
-          ''
-        )}</strong>' &mdash; you'll get em next time :)`;
+        const e = " &mdash; you'll get em next time :)"; // encouragement
+        this.outcomeElement.innerHTML = `The word was '<strong>${this.word.join('')}</strong>'${e}`;
         return true;
       }
       if (!puzzle.includes('*')) {
