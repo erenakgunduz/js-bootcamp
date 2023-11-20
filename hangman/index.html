@@ -1,22 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <script type="module" src="scripts/app.js" defer></script>
     <title>Hangman</title>
-    <script type="module" src="app.js" defer></script>
   </head>
   <body>
-    <header>
-      <h1>Hangman</h1>
-    </header>
-    <main>
-      <h2 class="puzzle"></h2>
-      <p class="remaining"></p>
-      <button class="reset">Reset</button>
-      <p class="outcome"></p>
-      <p class="finished"></p>
-    </main>
+    <div class="container">
+      <header>
+        <h1>Hangman</h1>
+      </header>
+      <main>
+        <h2 class="puzzle"></h2>
+        <p class="remaining"></p>
+        <button class="reset button">Reset</button>
+        <p class="outcome"></p>
+        <p class="finished"></p>
+      </main>
+    </div>
   </body>
 </html>
