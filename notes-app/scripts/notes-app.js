@@ -1,3 +1,5 @@
+import { getSavedNotes, saveNotes, renderNotes } from './notes-functions.js';
+
 // Query and remove
 // const p = document.querySelector("p");
 // p.remove();

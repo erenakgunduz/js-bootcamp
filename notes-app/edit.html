@@ -1,18 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="styles/style.css" />
     <title>Edit note</title>
   </head>
   <body>
-    <a href="/notes-app/index.html">Home</a>
-    <input type="text" id="note-title" placeholder="Note title" />
-    <span id="updated-at"></span>
-    <textarea id="note-body" placeholder="Enter note text"></textarea>
-    <button id="remove-note">Remove note</button>
-    <script src="notes-functions.js"></script>
-    <script type="module" src="notes-edit.js"></script>
+    <header class="header">
+      <div class="container">
+        <h1 class="header__title">Notes App</h1>
+        <h2 class="header__subtitle">Take notes and never forget</h2>
+      </div>
+    </header>
+    <div class="actions">
+      <div class="actions__container actions__container--spaced">
+        <a href="/notes-app/index.html">Home</a>
+        <span id="updated-at"></span>
+      </div>
+    </div>
+    <div class="container">
+      <input type="text" class="title-input" id="note-title" placeholder="Note title" />
+      <textarea class="body-input" id="note-body" placeholder="Enter note text"></textarea>
+      <button class="button button--secondary" id="remove-note">Remove note</button>
+    </div>
+    <script type="module" src="scripts/notes-functions.js"></script>
+    <script type="module" src="scripts/notes-edit.js"></script>
   </body>
 </html>

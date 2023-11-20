@@ -1,4 +1,5 @@
 import { generateLastEdited } from './imports.js';
+import { getSavedNotes, saveNotes, removeNote } from './notes-functions.js';
 
 const titleElement = document.querySelector('#note-title');
 const bodyElement = document.querySelector('#note-body');
@@ -39,7 +40,7 @@ bodyElement.addEventListener('input', (e) => {
 });
 
 removeElement.addEventListener('click', () => {
-  removeNote(note.id);
+  removeNote(notes, note.id);
   saveNotes(notes);
   location.assign('/notes-app/index.html');
 });

@@ -1,41 +1,34 @@
+import { generateLastEdited } from './imports.js';
+
 // Read existing notes from localStorage
-const getSavedNotes = () => {
+export function getSavedNotes() {
   const notesJSON = localStorage.getItem('notes');
   try {
     return notesJSON ? JSON.parse(notesJSON) : [];
   } catch (e) {
     return [];
   }
-};
+}
 
 // Save notes to localStorage
-const saveNotes = (notes) => {
+export function saveNotes(notes) {
   localStorage.setItem('notes', JSON.stringify(notes));
-};
+}
 
 // Remove a note from the list
-const removeNote = (id) => {
+export function removeNote(notes, id) {
   const noteIndex = notes.findIndex((note) => note.id === id);
 
   if (noteIndex > -1) {
     notes.splice(noteIndex, 1);
   }
-};
+}
 
 // Generate the DOM structure for a note
 const generateNoteDOM = (note) => {
-  const noteEl = document.createElement('li');
-  const textEl = document.createElement('a');
-  const button = document.createElement('button');
-
-  // Set up remove note button
-  button.textContent = 'x';
-  noteEl.appendChild(button);
-  button.addEventListener('click', () => {
-    removeNote(note.id);
-    saveNotes(notes);
-    renderNotes(notes, filters);
-  });
+  const noteEl = document.createElement('a');
+  const textEl = document.createElement('p');
+  const statusEl = document.createElement('p');
 
   // Set up note title text
   if (note.title.length > 0) {
@@ -43,8 +36,16 @@ const generateNoteDOM = (note) => {
   } else {
     textEl.textContent = 'Unnamed note';
   }
-  textEl.setAttribute('href', `/notes-app/edit.html#${note.id}`);
+  textEl.classList.add('list-item__title');
   noteEl.appendChild(textEl);
+
+  // Set up link
+  noteEl.setAttribute('href', `/notes-app/edit.html#${note.id}`);
+  noteEl.classList.add('list-item');
+  // Set up status message
+  statusEl.textContent = generateLastEdited(note.updatedAt);
+  statusEl.classList.add('list-item__subtitle');
+  noteEl.appendChild(statusEl);
 
   return noteEl;
 };
@@ -89,16 +90,24 @@ const sortNotes = (notes, sort) => {
 };
 
 // Render application notes
-function renderNotes(notes, filters) {
+export function renderNotes(notes, filters) {
+  const notesElement = document.querySelector('.notes .note-list');
   const myNotes = sortNotes(notes, filters.sortBy);
   const filteredNotes = myNotes.filter((note) =>
     note.title.toLowerCase().includes(filters.searchText.toLowerCase())
   );
 
-  document.querySelector('.notes .note-list').innerHTML = '';
+  notesElement.innerHTML = '';
 
-  filteredNotes.forEach((note) => {
-    const noteEl = generateNoteDOM(note);
-    document.querySelector('.notes .note-list').appendChild(noteEl);
-  });
+  if (filteredNotes.length > 0) {
+    filteredNotes.forEach((note) => {
+      const noteEl = generateNoteDOM(note);
+      notesElement.appendChild(noteEl);
+    });
+  } else {
+    const emptyMessage = document.createElement('p');
+    emptyMessage.textContent = 'No notes to show';
+    emptyMessage.classList.add('empty-message');
+    notesElement.appendChild(emptyMessage);
+  }
 }
