@@ -1,24 +1,18 @@
 import Hangman from './hangman.js';
 import { getPuzzle, getCountry } from './requests.js';
 
-getPuzzle(2, (error, puzzle) => {
-  if (error) {
-    console.log(`Error: ${error}`);
-  } else {
-    console.log(puzzle);
-  }
-});
+getPuzzle(2).then(
+  (puzzle) => console.log(puzzle),
+  (err) => console.log(`Error: ${err}`)
+);
 // Slow synchronous version for demonstration purposes
 // const puzzle = getPuzzleSync(2);
 // console.log(puzzle);
 
-getCountry('KP', (error, countryName) => {
-  if (error) {
-    console.log(`Unable to fetch data: ${error} response`);
-  } else {
-    console.log(countryName);
-  }
-});
+getCountry('KP').then(
+  (countryName) => console.log(countryName),
+  (err) => console.log(`Unable to fetch data: ${err} response`)
+);
 
 const game1 = new Hangman('Cat', 2);
 

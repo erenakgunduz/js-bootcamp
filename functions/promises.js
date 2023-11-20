@@ -19,12 +19,14 @@ getDataCallback((err, data) => {
 // 3) Also since either can only execute some action one time
 // 4) More options for when data comes in (promise 'fulfills')
 
-const myPromise = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    // resolve('This is the promise data');
-    reject(new Error('This is a promise error'));
-  }, 2000);
-});
+const getDataPromise = (data) =>
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(`This is the promise data: ${data}`);
+      // reject(new Error('This is a promise error'));
+    }, 2000);
+  });
+const myPromise = getDataPromise(35);
 
 myPromise.then(
   (data) => console.log(data),
