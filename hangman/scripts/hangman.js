@@ -34,8 +34,8 @@ export default class Hangman {
       this.finishElement.textContent = '';
       if (this.guesses === 0 && puzzle.includes('*')) {
         this.status = 'failed';
-        const e = " &mdash; you'll get em next time :)"; // encouragement
-        this.outcomeElement.innerHTML = `The word was '<strong>${this.word.join('')}</strong>'${e}`;
+        const enc = "&mdash; you'll get em next time :)"; // encouragement
+        this.outcomeElement.innerHTML = `It was '<strong>${this.word.join('')}</strong>' ${enc}`;
         return true;
       }
       if (!puzzle.includes('*')) {
