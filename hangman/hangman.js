@@ -5,6 +5,10 @@ export default class Hangman {
     this.guessedLetters = [];
     this.finished = false;
     this.status = 'playing';
+    this.puzzleElement = document.querySelector('main .puzzle');
+    this.remainElement = document.querySelector('main .remaining');
+    this.outcomeElement = document.querySelector('main .outcome');
+    this.finishElement = document.querySelector('main .finished');
   }
 
   get game() {
@@ -20,26 +24,26 @@ export default class Hangman {
 
     puzzle = puzzle.join('');
     // Establish the different scenarios
-    const puzzleElement = document.querySelector('main .puzzle');
-    const outcomeElement = document.querySelector('main .outcome');
-    const finishElement = document.querySelector('main .finished');
     if (this.guesses >= 0 && !this.finished) {
-      puzzleElement.textContent = puzzle;
+      this.puzzleElement.textContent = puzzle;
+      this.remainElement.textContent = `You have ${this.guesses} guesses left`;
+      this.outcomeElement.textContent = '';
+      this.finishElement.textContent = '';
       if (this.guesses === 0 && puzzle.includes('*')) {
         this.status = 'failed';
-        outcomeElement.innerHTML = `The word was '<strong>${this.word.join(
+        this.outcomeElement.innerHTML = `The word was '<strong>${this.word.join(
           ''
         )}</strong>' &mdash; you'll get em next time :)`;
         return true;
       }
       if (!puzzle.includes('*')) {
         this.status = 'finished';
-        outcomeElement.textContent = 'You got it! Congratulations :)';
+        this.outcomeElement.textContent = 'You got it! Congratulations :)';
         return true;
       }
       return false;
     }
-    finishElement.textContent = 'You already finished this game :)';
+    this.finishElement.textContent = 'You already finished this game :)';
     return true;
   }
 
@@ -90,11 +94,10 @@ export default class Hangman {
     // console.debug(this.guessedLetters);
     this.finished = this.game;
     if (!this.finished) {
-      const remainElement = document.querySelector('main .remaining');
       if (this.guesses === 1) {
-        remainElement.textContent = 'You have one guess left. Last chance ;)';
+        this.remainElement.textContent = 'You have one guess left. Last chance ;)';
       } else {
-        remainElement.textContent = `You have ${this.guesses} guesses left`;
+        this.remainElement.textContent = `You have ${this.guesses} guesses left`;
       }
     }
     // console.debug(this.status);
