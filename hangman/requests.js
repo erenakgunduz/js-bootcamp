@@ -2,15 +2,13 @@
 // Request - What we want to do
 // Response - What was actually done
 
-export function getPuzzle(wordCount) {
-  return fetch(`https://puzzle.mead.io/puzzle?wordCount=${wordCount}`)
-    .then((response) => {
-      if (response.status === 200) {
-        return response.json();
-      }
-      throw new Error(`Unable to fetch puzzle, ${response.status} response`);
-    })
-    .then((data) => data.puzzle);
+export async function getPuzzle(wordCount) {
+  const response = await fetch(`https://puzzle.mead.io/puzzle?wordCount=${wordCount}`);
+  if (response.status === 200) {
+    const data = await response.json();
+    return data.puzzle;
+  }
+  throw new Error(`Unable to fetch puzzle, ${response.status} response`);
 }
 
 export function getPuzzleSync(wordCount) {
@@ -29,27 +27,26 @@ export function getPuzzleSync(wordCount) {
   return response;
 }
 
-export function getCountry(countryCode) {
-  return fetch('https://restcountries.com/v3.1/all')
-    .then((response) => {
-      if (response.status === 200) {
-        return response.json();
-      }
-      throw new Error(`Unable to fetch data, ${response.status} response`);
-    })
-    .then((data) => {
-      const countryName = data.find((country) => country.cca2 === countryCode);
-      return countryName.name.common;
-    });
+export async function getCountry(countryCode) {
+  const response = await fetch('https://restcountries.com/v3.1/all');
+  if (response.status === 200) {
+    const data = await response.json();
+    const countryName = data.find((country) => country.cca2 === countryCode);
+    return countryName.name.common;
+  }
+  throw new Error(`Unable to fetch data, ${response.status} response`);
 }
 
-export function getLocation() {
-  return fetch('http://ip-api.com/json/')
-    .then((response) => {
-      if (response.status === 200) {
-        return response.json();
-      }
-      throw new Error(`Unable to fetch location, ${response.status} response`);
-    })
-    .then((data) => [data.city, data.regionName, data.country, data.countryCode]);
+export async function getCurrentCountry() {
+  const location = await getLocation();
+  return getCountry(location[3]); // In my case I can also just use return location[2];
+}
+
+export async function getLocation() {
+  const response = await fetch('http://ip-api.com/json/');
+  if (response.status === 200) {
+    const data = await response.json();
+    return [data.city, data.regionName, data.country, data.countryCode];
+  }
+  throw new Error(`Unable to fetch location, ${response.status} response`);
 }
