@@ -2,7 +2,7 @@
 // Request - What we want to do
 // Response - What was actually done
 
-export function getPuzzle(callback) {
+export function getPuzzle(wordCount, callback) {
   const request = new XMLHttpRequest();
 
   request.addEventListener('readystatechange', (e) => {
@@ -14,14 +14,14 @@ export function getPuzzle(callback) {
     }
   });
 
-  request.open('GET', 'https://puzzle.mead.io/puzzle?wordCount=2');
+  request.open('GET', `https://puzzle.mead.io/puzzle?wordCount=${wordCount}`);
   request.send();
 }
 
-export function getPuzzleSync() {
+export function getPuzzleSync(wordCount) {
   const request = new XMLHttpRequest();
   let response;
-  request.open('GET', 'https://puzzle.mead.io/slow-puzzle?wordCount=2', false); // passing false as 3rd argument makes it run synchronously
+  request.open('GET', `https://puzzle.mead.io/puzzle?wordCount=${wordCount}`, false); // passing false as 3rd argument makes it run synchronously
   request.send();
 
   if (request.readyState === 4 && request.status === 200) {
@@ -34,16 +34,16 @@ export function getPuzzleSync() {
   return response;
 }
 
-export function getCountry(countryCode) {
+export function getCountry(countryCode, callback) {
   const countryRequest = new XMLHttpRequest();
 
   countryRequest.addEventListener('readystatechange', (e) => {
     if (e.target.readyState === 4 && e.target.status === 200) {
       const data = JSON.parse(e.target.responseText);
       const countryName = data.find((country) => country.cca2 === countryCode);
-      console.log(countryName.name.common);
+      callback(undefined, countryName.name.common);
     } else if (e.target.readyState === 4) {
-      console.log('Unable to fetch data');
+      callback(e.target.status);
     }
   });
 
