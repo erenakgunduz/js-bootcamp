@@ -42,8 +42,8 @@ getDataPromise(2).then(
   (err) => console.log(err)
 );
 
-getDataPromise(10)
+getDataPromise(10) // Promise chaining
   .then((data) => getDataPromise(data))
-  .then((data) => getDataPromise(data))
+  .then((data) => 'Some test data')
   .then((data) => console.log(data))
   .catch((err) => console.log(err));

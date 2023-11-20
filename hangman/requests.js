@@ -3,21 +3,14 @@
 // Response - What was actually done
 
 export function getPuzzle(wordCount) {
-  return new Promise((resolve, reject) => {
-    const request = new XMLHttpRequest();
-
-    request.addEventListener('readystatechange', (e) => {
-      if (e.target.readyState === 4 && e.target.status === 200) {
-        const data = JSON.parse(e.target.responseText);
-        resolve(data.puzzle);
-      } else if (e.target.readyState === 4) {
-        reject(e.target.status);
+  return fetch(`https://puzzle.mead.io/puzzle?wordCount=${wordCount}`)
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
       }
-    });
-
-    request.open('GET', `https://puzzle.mead.io/puzzle?wordCount=${wordCount}`);
-    request.send();
-  });
+      throw new Error(`Unable to fetch puzzle, ${response.status} response`);
+    })
+    .then((data) => data.puzzle);
 }
 
 export function getPuzzleSync(wordCount) {
@@ -37,20 +30,15 @@ export function getPuzzleSync(wordCount) {
 }
 
 export function getCountry(countryCode) {
-  return new Promise((resolve, reject) => {
-    const countryRequest = new XMLHttpRequest();
-
-    countryRequest.addEventListener('readystatechange', (e) => {
-      if (e.target.readyState === 4 && e.target.status === 200) {
-        const data = JSON.parse(e.target.responseText);
-        const countryName = data.find((country) => country.cca2 === countryCode);
-        resolve(countryName.name.common);
-      } else if (e.target.readyState === 4) {
-        reject(e.target.status);
+  return fetch('https://restcountries.com/v3.1/all')
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
       }
+      throw new Error(`Unable to fetch data, ${response.status} response`);
+    })
+    .then((data) => {
+      const countryName = data.find((country) => country.cca2 === countryCode);
+      return countryName.name.common;
     });
-
-    countryRequest.open('GET', 'https://restcountries.com/v3.1/all');
-    countryRequest.send();
-  });
 }
