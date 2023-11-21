@@ -4,24 +4,40 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Todo App</title>
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <title>To-do App</title>
   </head>
   <body>
-    <header></header>
-    <label class="hide-completed">
-      <input type="checkbox" id="hide-completed" /><span>Hide completed</span>
-    </label>
-    <div class="filter">
-      <input id="search-text" type="text" placeholder="Filter todos" />
+    <header class="header">
+      <div class="container">
+        <h1 class="header__title">To-do App</h1>
+        <h2 class="header__subtitle">What do you need to do?</h2>
+      </div>
+    </header>
+
+    <div class="actions">
+      <div class="actions__container">
+        <div class="filter">
+          <input class="input" id="search-text" type="text" placeholder="Filter todos" />
+        </div>
+        <label class="checkbox">
+          <input type="checkbox" id="hide-completed" /><span>Hide completed</span>
+        </label>
+      </div>
     </div>
-    <div class="todos">
-      <ul class="todo-list"></ul>
+
+    <div class="container">
+      <h2 class="list-title"></h2>
+      <div class="todos">
+        <p class="empty-message"></p>
+        <ul class="todo-list"></ul>
+      </div>
+      <form action="#" id="new-todo">
+        <input class="input" type="text" placeholder="Add something to do" name="newTodoText" />
+        <button class="button">Submit</button>
+      </form>
     </div>
-    <form action="#" id="new-todo">
-      <input type="text" placeholder="Add something to do" name="newTodoText" />
-      <button>Submit</button>
-    </form>
-    <!-- Import scripts -->
     <script src="scripts/todo-functions.js"></script>
     <script src="scripts/todo-app.js"></script>
   </body>

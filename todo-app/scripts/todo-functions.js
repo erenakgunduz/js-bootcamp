@@ -45,28 +45,25 @@ const toggleTodo = (id, e) => {
 
 // Display summary
 const getSummary = (todos) => {
-  const pendingTodos = document.createElement('h2');
-  if (todos.length === 1) {
-    pendingTodos.textContent = 'You have one todo left';
-  } else {
-    pendingTodos.textContent = `You have ${todos.length} todos left`;
-  }
-  document.querySelector('header').appendChild(pendingTodos);
+  const pendingTodos = document.querySelector('.list-title');
+  const plural = todos.length === 1 ? '' : 's';
+  pendingTodos.textContent = `You have ${todos.length} to-do${plural} left`;
 };
 
 // Generate DOM render
 const generateTodoDOM = (render) => {
   document.querySelector('.todos .todo-list').innerHTML = '';
   render.forEach((todo) => {
-    const toDoList = document.createElement('li');
+    const toDoList = document.createElement('label');
+    const containerEl = document.createElement('div');
     const checkBox = document.createElement('input');
     const toDoListText = document.createElement('span');
     const rmButton = document.createElement('button');
 
     // Checkbox functionality
     checkBox.setAttribute('type', 'checkbox');
-    toDoList.appendChild(checkBox);
     checkBox.checked = todo.completed;
+    containerEl.appendChild(checkBox);
     checkBox.addEventListener('change', (e) => {
       toggleTodo(todo.id, e);
       saveTodos(todos);
@@ -75,10 +72,16 @@ const generateTodoDOM = (render) => {
 
     // Todo text to be rendered
     toDoListText.textContent = todo.text;
-    toDoList.appendChild(toDoListText);
+    containerEl.appendChild(toDoListText);
+
+    // Set up container
+    toDoList.classList.add('list-item');
+    containerEl.classList.add('list-item__container');
+    toDoList.appendChild(containerEl);
 
     // Remove button functionality
-    rmButton.textContent = 'x';
+    rmButton.textContent = 'remove';
+    rmButton.classList.add('button', 'button--text');
     toDoList.appendChild(rmButton);
     rmButton.addEventListener('click', () => {
       removeTodo(todo.id);
@@ -96,21 +99,34 @@ function renderTodos(todos, filters) {
     list.filter((item) => item.text.toLowerCase().includes(filters.searchText.toLowerCase()));
 
   const getPendingTodos = todos.filter((todo) => !todo.completed);
-  document.querySelector('header').innerHTML = '<h1>Todo App</h1>';
+  const emptyMessage = document.querySelector('.empty-message');
   getSummary(filteredTodos(getPendingTodos));
+
+  const showEmptyMessage = (len) => {
+    if (len < 1) {
+      emptyMessage.textContent = 'No to-dos to show';
+    } else {
+      emptyMessage.textContent = '';
+    }
+  };
 
   // Render based on current state of checkbox at time of function call
   // Which is every keystroke of search box due to event listener
   if (filters.hideCompleted.checked) {
     generateTodoDOM(filteredTodos(getPendingTodos));
+    showEmptyMessage(filteredTodos(getPendingTodos).length);
   } else {
     generateTodoDOM(filteredTodos(todos));
+    showEmptyMessage(filteredTodos(todos).length);
   }
 
   // Also need event listener here to respond to every change to checkbox state
   document.querySelector('#hide-completed').addEventListener('change', (e) => {
-    return e.target.checked
-      ? generateTodoDOM(filteredTodos(getPendingTodos))
-      : generateTodoDOM(filteredTodos(todos));
+    if (e.target.checked) {
+      showEmptyMessage(filteredTodos(getPendingTodos).length);
+      return generateTodoDOM(filteredTodos(getPendingTodos));
+    }
+    showEmptyMessage(filteredTodos(todos).length);
+    return generateTodoDOM(filteredTodos(todos));
   });
 }
