@@ -43,7 +43,7 @@ export async function getCurrentCountry() {
 }
 
 export async function getLocation() {
-  const response = await fetch('http://ip-api.com/json/');
+  const response = await fetch('//ip-api.com/json/');
   if (response.status === 200) {
     const data = await response.json();
     return [data.city, data.regionName, data.country, data.countryCode];
