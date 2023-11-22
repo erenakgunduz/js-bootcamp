@@ -14,9 +14,7 @@ const noteMatch = (myNotes) => myNotes.find((note) => note.id === noteID);
 let note = noteMatch(notes);
 
 const initialize = (myNote) => {
-  if (!myNote) {
-    location.assign('/notes-app/index.html');
-  }
+  if (!myNote) location.assign('/notes-app/index.html');
 
   titleElement.value = myNote.title;
   updatedElement.textContent = generateLastEdited(myNote.updatedAt);

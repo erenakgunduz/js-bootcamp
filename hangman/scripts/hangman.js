@@ -17,9 +17,7 @@ export default class Hangman {
     // Swap asterisks back out with actual discovered letters
     this.word.forEach((letter, index) => {
       const letterMatch = this.guessedLetters.find((guessedLetter) => letter === guessedLetter);
-      if (letterMatch) {
-        puzzle[index] = letter;
-      }
+      if (letterMatch) puzzle[index] = letter;
     });
 
     // Establish the different scenarios
@@ -90,9 +88,7 @@ export default class Hangman {
     // console.debug(thisGuess, overlap);
     // console.debug('Bad guess?', badGuess, 'Unique guess?', uniqueGuess);
     // So, we're saying "decrement only if it's a bad AND a unique guess"
-    if (badGuess && uniqueGuess) {
-      this.guesses--;
-    }
+    if (badGuess && uniqueGuess) this.guesses--;
     // Cleaning duplicates before pushing and for final array of all guessed letters
     [...new Set(thisGuess)].forEach((thisLetter) => this.guessedLetters.push(thisLetter));
     this.guessedLetters = [...new Set(this.guessedLetters)];

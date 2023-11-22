@@ -28,18 +28,14 @@ const saveTodos = (todos) => {
 const removeTodo = (id) => {
   const todoIndex = todos.findIndex((todo) => todo.id === id);
 
-  if (todoIndex > -1) {
-    todos.splice(todoIndex, 1);
-  }
+  if (todoIndex > -1) todos.splice(todoIndex, 1);
 };
 
 // Toggle checkbox for a todo
 const toggleTodo = (id, e) => {
   const todoToggle = todos.find((todo) => todo.id === id);
 
-  if (todoToggle) {
-    todoToggle.completed = !todoToggle.completed;
-  }
+  if (todoToggle) todoToggle.completed = !todoToggle.completed;
   e.target.checked = todoToggle.completed;
 };
 

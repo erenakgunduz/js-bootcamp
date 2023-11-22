@@ -19,9 +19,7 @@ export function saveNotes(notes) {
 export function removeNote(notes, id) {
   const noteIndex = notes.findIndex((note) => note.id === id);
 
-  if (noteIndex > -1) {
-    notes.splice(noteIndex, 1);
-  }
+  if (noteIndex > -1) notes.splice(noteIndex, 1);
 }
 
 // Generate the DOM structure for a note

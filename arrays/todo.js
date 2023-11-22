@@ -10,9 +10,7 @@ const deleteTodo = (list, title) => {
   const itemIndex = list.findIndex((item) => {
     return item.text.toLowerCase() === title.toLowerCase();
   });
-  if (itemIndex > -1) {
-    list.splice(itemIndex, 1);
-  }
+  if (itemIndex > -1) list.splice(itemIndex, 1);
 };
 
 const getPendingTodos = (list) => {
