@@ -11,9 +11,7 @@ const timestamp2 = time2.getTime();
 const date1 = new Date(timestamp1);
 const date2 = new Date(timestamp2);
 
-console.log(
-  timestamp1 < timestamp2 ? console.log(date1.toString()) : console.log(date2.toString())
-);
+console.log(timestamp1 < timestamp2 ? date1.toString() : date2.toString());
 
 // console.log(`Year: ${now.getFullYear()}`);
 // console.log(`Month: ${now.getMonth()}`);

@@ -1,4 +1,4 @@
-const myNotes = [
+let myNotes = [
   {
     title: 'My next trip',
     body: 'Somewhere on a certain continent',
@@ -106,11 +106,25 @@ const someObject = {};
 const otherObject = someObject;
 console.log(someObject === otherObject);
 
+myNotes = [
+  {
+    title: 'My next trip',
+    body: 'Somewhere on a certain continent',
+  },
+  {
+    title: 'Habits to work on',
+    body: 'Time management, first and foremost',
+  },
+  {
+    title: 'Room modifications',
+    body: 'New larger bed',
+  },
+];
 // This is the behavior we actually want
 const index = myNotes.findIndex((note) => {
   return note.title === 'Habits to work on';
 });
-console.log(index);
 
+console.log(index);
 sortNotes(myNotes);
 console.log(myNotes);

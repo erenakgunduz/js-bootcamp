@@ -17,7 +17,9 @@ export default class Hangman {
     // Swap asterisks back out with actual discovered letters
     this.word.forEach((letter, index) => {
       const letterMatch = this.guessedLetters.find((guessedLetter) => letter === guessedLetter);
-      puzzle[index] = letterMatch ? letter : '*';
+      if (letterMatch) {
+        puzzle[index] = letter;
+      }
     });
 
     // Establish the different scenarios
