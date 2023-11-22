@@ -30,11 +30,11 @@ const sortTodos = (list) => {
     //   return -1;
     if (!a.completed && b.completed) {
       return -1;
-    } else if (!b.completed && a.completed) {
-      return 1;
-    } else {
-      return 0;
     }
+    if (!b.completed && a.completed) {
+      return 1;
+    }
+    return 0;
   });
 };
 
@@ -45,23 +45,23 @@ console.log(false < true);
 sortTodos(toDoList);
 console.log(toDoList);
 
-// console.log(getPendingTodos(toDoList));
+console.log(getPendingTodos(toDoList));
 
-// deleteTodo(toDoList, "buy item");
-// console.log(toDoList);
+deleteTodo(toDoList, 'buy item');
+console.log(toDoList);
 
-// toDoList.splice(2, 1);
-// toDoList.push("Drive car");
-// toDoList.shift();
+toDoList.splice(2, 1);
+toDoList.push('Drive car');
+toDoList.shift();
 
-// const announce = `\nYou have ${toDoList.length} todos:`;
+const announce = `\nYou have ${toDoList.length} todos:`;
 
-// console.log(announce);
-// toDoList.forEach((item, i) => {
-//   console.log(`${i + 1}. ${item}`);
-// });
+console.log(announce);
+toDoList.forEach((item, i) => {
+  console.log(`${i + 1}. ${item}`);
+});
 
-// console.log(announce);
-// for (let count = 0; count < toDoList.length; count++) {
-//   console.log(`${count + 1}. ${toDoList[count]}`);
-// }
+console.log(announce);
+for (let count = 0; count < toDoList.length; count++) {
+  console.log(`${count + 1}. ${toDoList[count]}`);
+}

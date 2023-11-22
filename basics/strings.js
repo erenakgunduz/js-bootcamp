@@ -1,15 +1,15 @@
 // Intro
 
-let firstName = 'Eren';
-let lastName = 'Akgündüz';
-let fullName = firstName + ' ' + lastName;
+const firstName = 'Eren';
+const lastName = 'Akgündüz';
+const fullName = firstName + ' ' + lastName;
 
 console.log(fullName);
 
 // Location challenge
 
-let city = 'İzmir';
-let country = 'TR';
-let location = city + ', ' + country;
+const city = 'İzmir';
+const country = 'TR';
+const location = city + ', ' + country;
 
 console.log(location);

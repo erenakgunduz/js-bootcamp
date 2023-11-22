@@ -10,8 +10,4 @@ const product = products[0];
 // null and undefined
 // NaN - not a number, returned from invalid math
 
-if (product) {
-  console.log('Product found');
-} else {
-  console.log('Product not found');
-}
+console.log(product ? 'Product found' : 'Product not found');

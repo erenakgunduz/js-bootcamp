@@ -1,4 +1,4 @@
-let myBook = {
+const myBook = {
   title: '1984',
   author: 'George Orwell',
   pageCount: 326,
@@ -12,7 +12,7 @@ console.log(`${myBook.title} by ${myBook.author}`);
 
 // Challenge area
 
-let me = {
+const me = {
   name: 'Eren',
   age: 19,
   location: 'İzmir',

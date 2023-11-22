@@ -17,9 +17,7 @@ export default class Hangman {
     // Swap asterisks back out with actual discovered letters
     this.word.forEach((letter, index) => {
       const letterMatch = this.guessedLetters.find((guessedLetter) => letter === guessedLetter);
-      if (letterMatch) {
-        puzzle[index] = letter;
-      }
+      puzzle[index] = letterMatch ? letter : '*';
     });
 
     // Establish the different scenarios
@@ -29,7 +27,10 @@ export default class Hangman {
         letterElements.push(`<span>${letter}</span>`);
         this.puzzleElement.innerHTML = letterElements.join('');
       });
-      this.remainElement.textContent = `You have ${this.guesses} guesses left`;
+      this.remainElement.textContent =
+        this.guesses === 1
+          ? 'You have one guess left. Last chance ;)'
+          : `You have ${this.guesses} guesses left`;
       this.outcomeElement.textContent = '';
       this.finishElement.textContent = '';
       if (this.guesses === 0 && puzzle.includes('*')) {
@@ -95,13 +96,6 @@ export default class Hangman {
     this.guessedLetters = [...new Set(this.guessedLetters)];
     // console.debug(this.guessedLetters);
     this.finished = this.game;
-    if (!this.finished) {
-      if (this.guesses === 1) {
-        this.remainElement.textContent = 'You have one guess left. Last chance ;)';
-      } else {
-        this.remainElement.textContent = `You have ${this.guesses} guesses left`;
-      }
-    }
     // console.debug(this.status);
   }
 }

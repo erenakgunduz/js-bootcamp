@@ -1,12 +1,3 @@
-// Simple solution to DOM challenge
-// const listItems = document.querySelectorAll("ul > li");
-
-// listItems.forEach((item) => {
-//   if (item.textContent.toLowerCase().includes("the")) {
-//     item.remove();
-//   }
-// });
-
 const todos = getSavedTodos();
 
 const filters = {

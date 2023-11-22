@@ -1,4 +1,4 @@
-let num = 103.947;
+const num = 103.947;
 
 console.log(num.toFixed(2));
 
@@ -6,17 +6,17 @@ console.log(Math.round(num));
 console.log(Math.floor(num));
 console.log(Math.ceil(num));
 
-let min = 10;
-let max = 20;
-let randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
-console.log(randomNum);
+const minimum = 10;
+const maximum = 20;
+const randomNumber = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
+console.log(randomNumber);
 
 // Challenge area
 
 const makeGuess = (guess) => {
-  let min = 1;
-  let max = 5;
-  let randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+  const min = 1;
+  const max = 5;
+  const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
 
   return guess === randomNum;
 };

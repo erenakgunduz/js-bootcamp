@@ -100,33 +100,27 @@ function renderTodos(todos, filters) {
 
   const getPendingTodos = todos.filter((todo) => !todo.completed);
   const emptyMessage = document.querySelector('.empty-message');
-  getSummary(filteredTodos(getPendingTodos));
+  const emptyText = 'No to-dos to show';
 
-  const showEmptyMessage = (len) => {
-    if (len < 1) {
-      emptyMessage.textContent = 'No to-dos to show';
-    } else {
-      emptyMessage.textContent = '';
-    }
-  };
+  getSummary(filteredTodos(getPendingTodos));
 
   // Render based on current state of checkbox at time of function call
   // Which is every keystroke of search box due to event listener
   if (filters.hideCompleted.checked) {
     generateTodoDOM(filteredTodos(getPendingTodos));
-    showEmptyMessage(filteredTodos(getPendingTodos).length);
+    emptyMessage.textContent = filteredTodos(getPendingTodos).length < 1 ? emptyText : '';
   } else {
     generateTodoDOM(filteredTodos(todos));
-    showEmptyMessage(filteredTodos(todos).length);
+    emptyMessage.textContent = filteredTodos(todos).length < 1 ? emptyText : '';
   }
 
   // Also need event listener here to respond to every change to checkbox state
   document.querySelector('#hide-completed').addEventListener('change', (e) => {
     if (e.target.checked) {
-      showEmptyMessage(filteredTodos(getPendingTodos).length);
+      emptyMessage.textContent = filteredTodos(getPendingTodos).length < 1 ? emptyText : '';
       return generateTodoDOM(filteredTodos(getPendingTodos));
     }
-    showEmptyMessage(filteredTodos(todos).length);
+    emptyMessage.textContent = filteredTodos(todos).length < 1 ? emptyText : '';
     return generateTodoDOM(filteredTodos(todos));
   });
 }

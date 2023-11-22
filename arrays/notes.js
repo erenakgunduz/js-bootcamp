@@ -1,4 +1,4 @@
-const notes = [
+const myNotes = [
   {
     title: 'My next trip',
     body: 'Somewhere on a certain continent',
@@ -31,6 +31,13 @@ const findNote = (notes, noteTitle) => {
   });
 };
 
+// const findNote = (notes, noteTitle) => {
+//   const index = notes.findIndex((note) => {
+//     return note.title.toLowerCase() === noteTitle.toLowerCase();
+//   });
+//   return notes[index];
+// };
+
 const findNotes = (notes, query) => {
   return notes.filter((note) => {
     const isTitleMatch = note.title.toLowerCase().includes(query.toLowerCase());
@@ -39,79 +46,71 @@ const findNotes = (notes, query) => {
   });
 };
 
-// console.log(findNotes(notes, "bed"));
+console.log(findNotes(myNotes, 'bed'));
 
-// const findNote = (notes, noteTitle) => {
-//   const index = notes.findIndex((note) => {
-//     return note.title.toLowerCase() === noteTitle.toLowerCase();
-//   });
-//   return notes[index];
-// };
+const note1 = findNote(myNotes, 'other room modifications');
+console.log(note1);
 
-// const note = findNote(notes, "other room modifications");
-// console.log(note);
+console.log(myNotes.pop());
+myNotes.push('My new note');
 
-// console.log(notes.pop());
-// notes.push("My new note");
+console.log(myNotes.shift());
+myNotes.unshift('My first note');
 
-// console.log(notes.shift());
-// notes.unshift("My first note");
+myNotes.splice(1, 1, 'This is the new second item');
 
-// notes.splice(1, 1, "This is the new second item");
-
-// notes[2] = "This is the new note 3";
+myNotes[2] = 'This is the new note 3';
 
 // The order of the default parameters for this callback function
 // Item, index, array (the whole list at its state in the iteration)
-// notes.forEach((x, bruh) => {
-//   console.log(bruh);
-//   console.log(x);
-// });
+myNotes.forEach((x, bruh) => {
+  console.log(bruh);
+  console.log(x);
+});
 
-// console.log(notes.length);
-// console.log(notes);
+console.log(myNotes.length);
 
 // Using the for loop
-// for (let count = 0; count <= 2; count++) {
-//   console.log(count);
-// }
+for (let count = 0; count <= 2; count++) {
+  console.log(count);
+}
 
-// for (let count = 2; count >= 0; count--) {
-//   console.log(count);
-// }
+for (let count = 2; count >= 0; count--) {
+  console.log(count);
+}
 
-// for (let count = 0; count < notes.length; count++) {
-//   console.log(notes[count]);
-// }
+for (let count = 0; count < myNotes.length; count++) {
+  console.log(myNotes[count]);
+}
 
-// for (let count = notes.length - 1; count >= 0; count--) {
-//   console.log(notes[count]);
-// }
+for (let count = myNotes.length - 1; count >= 0; count--) {
+  console.log(myNotes[count]);
+}
 
 // Will only find a match if exact same location in memory, not like this where the content is identical
-// console.log(
-//   notes.indexOf({
-//     title: "Habits to work on",
-//     body: "Time management, first and foremost",
-//   })
-// );
+console.log(
+  myNotes.indexOf({
+    title: 'Habits to work on',
+    body: 'Time management, first and foremost',
+  })
+);
 // False, as this demonstrates
-// console.log({} === {});
+console.log({} === {});
 
 // Works for primitive types as seen here but not as useful
-// notes.push("Testing");
-// console.log(notes.indexOf("Testing"));
+myNotes.push('Testing');
+console.log(myNotes.indexOf('Testing'));
 
 // This will now be true
-// let someObject = {};
-// let otherObject = someObject;
-// console.log(someObject === otherObject);
+const someObject = {};
+const otherObject = someObject;
+console.log(someObject === otherObject);
 
 // This is the behavior we actually want
-// const index = notes.findIndex((note) => {
-//   return note.title === "Habits to work on";
-// });
-// console.log(index);
+const index = myNotes.findIndex((note) => {
+  return note.title === 'Habits to work on';
+});
+console.log(index);
 
-sortNotes(notes);
-console.log(notes);
+sortNotes(myNotes);
+console.log(myNotes);

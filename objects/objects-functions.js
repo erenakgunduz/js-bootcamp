@@ -1,31 +1,31 @@
-let someBook = {
+const someBook = {
   title: '1984',
   author: 'George Orwell',
   pageCount: 326,
 };
 
-let otherBook = {
+const otherBook = {
   title: "A People's History",
   author: 'Howard Zinn',
   pageCount: 723,
 };
 
-let getSummary = function (book) {
+const getSummary = (book) => {
   return {
     summary: `${book.title} by ${book.author}`,
     pageCountSummary: `${book.title} is ${book.pageCount} pages long`,
   };
 };
 
-let bookSummary = getSummary(someBook);
-let otherBookSummary = getSummary(otherBook);
+const bookSummary = getSummary(someBook);
+const otherBookSummary = getSummary(otherBook);
 
 console.log(bookSummary.pageCountSummary);
 
 // Challenge area
 
 const tempConverter = (fahrenheit) => {
-  let celsius = (fahrenheit - 32) * (5 / 9);
+  const celsius = (fahrenheit - 32) * (5 / 9);
 
   return {
     tempInF: `Temperature in °F: ${fahrenheit}`,
@@ -34,5 +34,5 @@ const tempConverter = (fahrenheit) => {
   };
 };
 
-let exampleTemp = tempConverter(69);
-console.log(exampleTemp);
+const exampconstemp = tempConverter(69);
+console.log(exampconstemp);

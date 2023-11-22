@@ -1,24 +1,24 @@
-let myAccount = {
+const myAccount = {
   name: 'Thurgood Jenkins',
   expenses: 0,
   income: 0,
 };
 
-let addIncome = (account, amount) => {
+const addIncome = (account, amount) => {
   account.income += amount;
 };
 
-let addExpense = (account, amount) => {
+const addExpense = (account, amount) => {
   account.expenses += amount;
 };
 
-let resetAccount = (account) => {
+const resetAccount = (account) => {
   account.income = 0;
   account.expenses = 0;
 };
 
-let getAccountSummary = (account) => {
-  let balance = account.income - account.expenses;
+const getAccountSummary = (account) => {
+  const balance = account.income - account.expenses;
   return `Account for ${account.name} has $${balance}. $${account.income} in income. $${account.expenses} in expenses.`;
 };
 
@@ -26,7 +26,7 @@ addIncome(myAccount, 500);
 addExpense(myAccount, 100);
 addExpense(myAccount, 50);
 
-// let accountSummary = getAccountSummary(myAccount);
+// const accountSummary = getAccountSummary(myAccount);
 // console.log(accountSummary);
 
 // resetAccount(myAccount);

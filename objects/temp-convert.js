@@ -1,19 +1,9 @@
 // Temperature converter
 
-// Old school way
-// function ConvertFtoC(fahrenheit) {
-//   let celsius = (parseInt(fahrenheit) - 32) * (5 / 9);
-//   return celsius;
-// }
-
 // Using object to have it all in one function
 const tempConverter = (fahrenheit) => {
   const celsius = (Number(fahrenheit) - 32) * (5 / 9);
-
-  return {
-    celsius: celsius,
-    kelvin: celsius + 273.15,
-  };
+  return { celsius, kelvin: celsius + 273.15 };
 };
 
 const readline = require('readline').createInterface({

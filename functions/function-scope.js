@@ -2,18 +2,18 @@
 // --Local scope (fahrenheit, celsius)
 // ----Local scope (isFreezing)
 
-let ConvertFtoC = (fahrenheit) => {
-  let celsius = (fahrenheit - 32) * (5 / 9);
+const ConvertFtoC = (fahrenheit) => {
+  const celsius = (fahrenheit - 32) * (5 / 9);
 
   if (celsius <= 0) {
-    let isFreezing = true;
+    const isFreezing = true;
   }
 
   return celsius;
 };
 
-let tempOne = ConvertFtoC(32);
-let tempTwo = ConvertFtoC(68);
+const tempOne = ConvertFtoC(32);
+const tempTwo = ConvertFtoC(68);
 
 console.log('------');
 console.log(tempOne);
