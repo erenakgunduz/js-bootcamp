@@ -1,5 +1,5 @@
 const getTip = (amount) => {
-  of amount === 'number') {
+  if (typeof amount === 'number') {
     return amount * 0.25;
   }
   throw TypeError(`Expected number, got ${typeof amount}`);
