@@ -8,9 +8,7 @@
 // String, Number, Boolean also have their prototypes which inherit from Object, makes sense
 
 // Normally you never do it like this, we use the literal syntax and this is basically what JS does behind the scenes
-const product = new Object({
-  name: 'cassava',
-});
+const product = new Object({ name: 'cassava' });
 
 const team = ['Luke', 'Madison'];
 // hasOwnProperty -- a method of the Object prototype

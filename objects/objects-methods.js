@@ -2,14 +2,14 @@ const restaurant = {
   name: 'Halim Usta',
   guestCapacity: 35,
   guestCount: 0,
-  checkAvailability: function (partySize) {
+  checkAvailability(partySize) {
     const seatsLeft = this.guestCapacity - this.guestCount;
     return partySize <= seatsLeft;
   },
-  seatParty: function (partySize) {
+  seatParty(partySize) {
     this.guestCount += partySize;
   },
-  removeParty: function (partySize) {
+  removeParty(partySize) {
     this.guestCount -= partySize;
   },
 };
