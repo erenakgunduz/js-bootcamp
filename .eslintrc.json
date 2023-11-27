@@ -5,7 +5,13 @@
     "es2022": true,
     "node": true
   },
-  "extends": ["eslint:recommended", "airbnb-base", "prettier", "plugin:prettier/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "airbnb-base",
+    "prettier",
+    "plugin:prettier/recommended",
+    "plugin:import/recommended"
+  ],
   "overrides": [],
   "parserOptions": {
     "ecmaVersion": "latest",
